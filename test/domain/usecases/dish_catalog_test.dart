@@ -88,9 +88,8 @@ void main() {
       repo = _Dishes();
       addCustomDish = AddCustomDish(repo);
       when(() => repo.upsertAll(any())).thenAnswer((_) async {});
-      when(
-        () => repo.getAll(includeInactive: true),
-      ).thenAnswer((_) async => all);
+      when(() => repo.getAll(includeInactive: true))
+          .thenAnswer((_) async => all);
     });
 
     const draft = CustomDishDraft(
@@ -123,10 +122,7 @@ void main() {
 
     test('numbers later custom dishes after the newest one', () async {
       when(() => repo.getAll(includeInactive: true)).thenAnswer(
-        (_) async => [
-          ...all,
-          named(firstCustomDishId + 4, 'Old one', 'پرانی'),
-        ],
+        (_) async => [...all, named(firstCustomDishId + 4, 'Old one', 'پرانی')],
       );
       final added = await addCustomDish(
         draft.copyWith(dishType: DishType.vegetable),

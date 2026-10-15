@@ -18,4 +18,8 @@ abstract interface class DishRepository {
   });
 
   Future<void> setActive(int dishId, {required bool active});
+
+  /// Removes a custom dish (used to undo adding one). Built-in dishes can
+  /// only be deactivated, so this ignores them.
+  Future<void> deleteCustom(int dishId);
 }
