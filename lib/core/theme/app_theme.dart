@@ -42,6 +42,14 @@ abstract final class AppTheme {
     final textTheme = _textTheme(urdu: urdu);
     const buttonMinimumSize = WidgetStatePropertyAll(Size(64, minTouchTarget));
     final buttonTextStyle = WidgetStatePropertyAll(textTheme.titleMedium);
+    // Turmeric text on cream is unreadable: outlined and text buttons use
+    // chai brown (turmeric stays for borders and filled buttons).
+    final secondaryForeground = WidgetStateProperty.resolveWith(
+      (states) => states.contains(WidgetState.disabled)
+          ? AppColors.chaiBrown.withValues(alpha: 0.38)
+          : AppColors.chaiBrown,
+    );
+    const secondaryIconSize = WidgetStatePropertyAll<double>(24);
     const buttonShape = WidgetStatePropertyAll(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -80,12 +88,19 @@ abstract final class AppTheme {
           minimumSize: buttonMinimumSize,
           textStyle: buttonTextStyle,
           shape: buttonShape,
+          foregroundColor: secondaryForeground,
+          iconSize: secondaryIconSize,
+          side: const WidgetStatePropertyAll(
+            BorderSide(color: AppColors.turmeric, width: 2),
+          ),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
           minimumSize: buttonMinimumSize,
           textStyle: buttonTextStyle,
+          foregroundColor: secondaryForeground,
+          iconSize: secondaryIconSize,
         ),
       ),
       snackBarTheme: SnackBarThemeData(

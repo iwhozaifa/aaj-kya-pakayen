@@ -54,6 +54,22 @@ void main() {
           }
         });
 
+        test('secondary buttons use dark text for contrast on cream', () {
+          for (final style in [
+            theme.outlinedButtonTheme.style,
+            theme.textButtonTheme.style,
+          ]) {
+            expect(
+              style?.foregroundColor?.resolve(<WidgetState>{}),
+              AppColors.chaiBrown,
+            );
+            expect(
+              style?.iconSize?.resolve(<WidgetState>{}),
+              greaterThanOrEqualTo(24),
+            );
+          }
+        });
+
         test('keeps touch targets at least 48dp', () {
           expect(theme.materialTapTargetSize, MaterialTapTargetSize.padded);
           final buttonStyles = [

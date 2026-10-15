@@ -1,6 +1,6 @@
 import 'package:aaj_kya_pakayen/core/widgets/app_shell.dart';
 import 'package:aaj_kya_pakayen/features/pantry/pantry_screen.dart';
-import 'package:aaj_kya_pakayen/features/today/today_placeholder_screen.dart';
+import 'package:aaj_kya_pakayen/features/today/today_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -22,7 +22,7 @@ GoRouter appRouter(Ref ref) {
             routes: [
               GoRoute(
                 path: AppRoutes.today,
-                builder: (context, state) => const TodayPlaceholderScreen(),
+                builder: (context, state) => const TodayScreen(),
               ),
             ],
           ),
