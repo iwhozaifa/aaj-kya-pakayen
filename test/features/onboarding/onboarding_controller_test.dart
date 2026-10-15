@@ -42,4 +42,12 @@ void main() {
     expect(batches.single.quantityGrams, 1000);
     expect(batches.single.addedOn, DateTime(2026, 10, 15));
   });
+
+  test('choosing a language saves it straight away', () async {
+    await container.read(onboardingActionsProvider).chooseLanguage('en');
+
+    final settings = await container.read(settingsRepositoryProvider).load();
+    expect(settings.languageCode, 'en');
+    expect(settings.onboardingComplete, isFalse);
+  });
 }

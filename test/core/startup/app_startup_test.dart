@@ -23,4 +23,14 @@ void main() {
     final dishes = await container.read(dishRepositoryProvider).getAll();
     expect(dishes, hasLength(pakistaniDishes.length));
   });
+
+  test('startup loads settings so the first screen is the right one', () async {
+    final container = ProviderContainer.test(
+      overrides: [appDatabaseProvider.overrideWithValue(db)],
+    );
+
+    await container.read(appStartupProvider.future);
+
+    expect(container.read(appSettingsProvider).hasValue, isTrue);
+  });
 }
