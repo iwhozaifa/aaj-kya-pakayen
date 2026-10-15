@@ -76,3 +76,19 @@ is 64dp.
 
 ## D-013 — Urdu text avoids the middle dot
 In Nastaliq, `·` looks like the Urdu zero `٠`. Urdu strings use `—` or `،` as separators.
+
+## D-014 — freezed classes keep classic constructor syntax
+Dart 3.13's `unnecessary_type_name_in_constructor` lint wants `factory new(...)`. freezed 4.0.2, the
+latest release, can't parse that yet. Each freezed file has a file-level ignore for that one lint;
+every other class uses `new`.
+
+## D-015 — Storage details not in the brief
+Enums are stored by Dart name (`vegDay`, not `VEG_DAY`). `dinner_log.date` is `yyyy-MM-dd` text. Its
+UNIQUE constraint provides the index on that column. Settings are typed in the domain
+(`AppSettings`) and stored as key/value rows in `app_settings`. `reminder_enabled`,
+`day_type_override` and `onboarding_complete` are keys we added beyond the brief's list. See
+DATABASE.md.
+
+## D-016 — json_serializable uses `explicit_to_json`
+Set in `build.yaml`, so nested freezed objects (e.g. `AppSettings.dayTypeOverride`) serialize properly.
+The domain coverage gate ignores `*.g.dart` and `*.freezed.dart`.

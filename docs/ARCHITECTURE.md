@@ -65,7 +65,7 @@ Full details arrive with `feature/suggestion-engine`.
 
 ## Sync plan (not built yet)
 
-`domain/repositories/sync_repository.dart` will define:
+`domain/repositories/sync_repository.dart` defines:
 
 ```dart
 abstract interface class SyncRepository {
