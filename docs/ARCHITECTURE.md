@@ -45,6 +45,7 @@ docs/         this file, DATABASE.md, BRANDING.md, GIT_WORKFLOW.md, DECISIONS.md
 | Feature | Screen | State |
 | --- | --- | --- |
 | Today (`features/today/`) | `TodayScreen`: day badge, top suggestion with side and reasons, Cooking this / Show another / Ordering outside / Swap, other ideas, logged state | `todayStateProvider` (suggestions plus tonight's entry, refreshed by the settings, log, pantry and dish change feeds), `TodayActions` (backed by the `LogDinner` use case) |
+| History (`features/history/`) | `HistoryScreen`: 7-day strip, 60-day list, edit sheet (home dish and side, or outside, or delete) | `historyStateProvider`, `HistoryActions` (`saveHome`, `saveOutside`, `delete`, `restore` for undo) |
 | Pantry (`features/pantry/`) | `PantryScreen`: four protein tiles, ± 250 g, add purchase | `pantrySummaryProvider` (stream of `ProteinStock`), `PantryActions` (add, ±, undo through `PantryUndo`) |
 
 "Now" comes from `clockProvider` (`core/utils/clock.dart`), so tests can pin the date.
