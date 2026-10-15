@@ -13,9 +13,9 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../engine/fixtures.dart';
 
-class _Log extends Mock implements DinnerLogRepository {}
+class _Log extends Mock implements DinnerLogRepository;
 
-class _Pantry extends Mock implements PantryRepository {}
+class _Pantry extends Mock implements PantryRepository;
 
 void main() {
   late _Log log;
