@@ -99,3 +99,19 @@ The domain coverage gate ignores `*.g.dart` and `*.freezed.dart`.
 - **Pulao and biryani** have `staple_pairing = none`, because they are the staple themselves.
 - **Rice pulses:** seven pulse dishes are paired with rice (daal chawal, masoor daal, khichdi, rajma, lobia, chana pulao, kadhi).
 - **`app_settings.seed_version`** is owned by the seeder. `SettingsRepository.save` only replaces the keys it owns.
+
+## D-018 — "Show me another" rotates the ranking
+D-007 planned to reseed the jitter with `anotherCount`. That doesn't guarantee a new dish on top: a
+reseed can put the same dish first again. Instead, the ranking is seeded by date only, and each tap
+rotates the ranked list by one. The next-best dish always comes up, and the same tap count always
+gives the same answer.
+
+## D-019 — How "Order from outside" is offered
+`SuggestionResult.canOrderOutside` is true on every non-veg day, so the Today screen always shows the
+button. `OutsideSuggestion` is the suggestion itself only when no home meat dish passes the hard
+rules. In that case `restock` lists the proteins whose dishes are blocked only by stock. It is empty
+when the no-repeat rule is the cause.
+
+## D-020 — Side dishes come only from curated pairings
+The engine proposes a side only from `dish_pairings`. It never pairs ad hoc with any `can_be_side`
+dish. This keeps combinations culturally sensible. A side must also pass the no-repeat rule.

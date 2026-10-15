@@ -47,21 +47,63 @@ docs/         this file, DATABASE.md, BRANDING.md, GIT_WORKFLOW.md, DECISIONS.md
 - **go_router**. Routes are defined in `core/router/app_router.dart` and the router is provided by
   Riverpod, so redirects (e.g. onboarding) can read app state.
 
-## Suggestion engine (overview)
+## Suggestion engine
 
-`SuggestionEngine` is a pure function of a `SuggestionContext`:
-dishes, the dinner log, pantry batches, settings, today's date, any day-type override,
-and an "another" counter. It has no I/O.
+The engine lives in `lib/domain/engine/`. `SuggestionEngine.suggest(SuggestionRequest)` is a pure, deterministic
+function. Its inputs are the date, dishes, pairings, dinner log, pantry batches, settings and the
+"another" counter. The use case `GetTonightSuggestions` (`domain/usecases/`) loads those inputs from the
+repositories. It loads the log for the last max(window, 30) days, plus the latest entry for the flip.
 
-1. **Hard filters:** active dishes from enabled cuisines, the no-repeat window, the day type,
-   protein in stock (scaled by household size), and staple pairing.
-2. **Soft scoring:** use the oldest protein first, avoid the same protein as last time,
-   avoid the same cooking style as yesterday, and fit the time budget.
-3. **Seeded tie-break:** the seed is derived from the date and the "another" counter.
-4. **Output:** the top 3 `Suggestion`s, each with an optional side and `ReasonCode`s.
-   The UI localizes the reasons.
+```mermaid
+flowchart LR
+  R[SuggestionRequest] --> D[resolveDayType]
+  R --> G[RepeatGuard]
+  R --> P[PantryStock]
+  D --> F{hard filters}
+  G --> F
+  P --> F
+  F -->|candidates| S[DishScorer + date-seeded jitter]
+  S --> K[rank, rotate by anotherCount, top 3]
+  K --> SP[pickSide]
+  F -->|no meat dish cookable| O[OutsideSuggestion + restock]
+  SP --> OUT[SuggestionResult]
+  O --> OUT
+```
 
-Full details arrive with `feature/suggestion-engine`.
+### Hard rules (`engine/rules/`)
+
+| Rule | Where | Behaviour |
+| --- | --- | --- |
+| Alternation and swap | `day_type_rule.dart` | Tonight is the flip of the latest dinner before tonight, or veg day if there is none. A `DayTypeOverride` applies to its own date only, and tomorrow flips from what was logged. Outside dinners count as non-veg. |
+| No repeats | `repeat_guard.dart` | A dish is blocked if it or its `variantGroup` was a main or a side within `repeatWindowDays`. "Within" means `daysAgo < window`. |
+| Pantry | `pantry_stock.dart` | A meat dish needs `grams/person × household` of its protein, summed over batches. |
+| Pairing | `side_picker.dart` | Only meat mains get a side: the best-priority curated pairing that is an active, allowed vegetable side. At most one. |
+| Outside | `suggestion_engine.dart` | Available on every non-veg day (`canOrderOutside`). It becomes the only suggestion when no meat dish is cookable, with `restock` set to the proteins that would unblock dishes. |
+| Cuisine and active | `suggestion_engine.dart` | Only active dishes from `enabledCuisines` are considered. |
+
+### Soft scoring (`engine/scoring/`)
+
+Weights live in `weights.dart`.
+
+| Signal | Effect | Reason code |
+| --- | --- | --- |
+| Oldest batch of the dish's protein | +2 per day, capped at 14 days | `proteinInStock` (from 2 days) |
+| Same protein as the last non-veg dinner | −15 | `differentProtein` when it differs |
+| Same cooking style as yesterday | −10 | |
+| Style not cooked in the window (not `other`) | +3 | `freshStyle` ("No karahi this week") |
+| Time budget (quick ≤30, normal ≤60) | +5 if it fits, −8 if not; none for elaborate | `fitsTime` |
+| Days since last cooked | +0.2 per day, capped at 30 (never cooked counts as 30) | `notCookedFor` (from 14 days) |
+| Pulse dish | | `servedWith` (rice, roti or either) |
+| Seeded jitter | +0 to 4, `Random(yyyymmdd × 31)` | |
+
+"Show me another" rotates the ranked list by `anotherCount`, so each tap brings the next-best dish to
+the top and the list wraps around. The domain layer holds no user-facing strings: `Reason` is a sealed
+union that the UI localizes.
+
+### Tests
+
+- `test/engine/`: one file per rule, the scorer, engine scenarios.
+- `engine_properties_test.dart`: 20 simulated households cook for 60 days from the real seed catalogue. Every day it checks alternation, no repeats, pantry cover, side rules and determinism.
 
 ## Sync plan (not built yet)
 
