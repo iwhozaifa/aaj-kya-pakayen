@@ -10,7 +10,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../helpers/pump_app.dart';
 
-class _MockActions extends Mock implements PantryActions {}
+class _MockActions extends Mock implements PantryActions;
 
 const _summary = [
   ProteinStock(
@@ -93,7 +93,7 @@ void main() {
   testWidgets('+ adds stock and offers undo', (tester) async {
     await pump(tester);
 
-    await tester.tap(find.bySemanticsLabel('Add 250 g of Chicken'));
+    await tester.tap(find.byTooltip('Add 250 g of Chicken'));
     await tester.pumpAndSettle();
     verify(() => actions.increase(ProteinType.chicken)).called(1);
     expect(find.text('250 g Chicken added'), findsOneWidget);
@@ -106,7 +106,7 @@ void main() {
   testWidgets('− removes stock and offers undo', (tester) async {
     await pump(tester);
 
-    await tester.tap(find.bySemanticsLabel('Remove 250 g of Beef'));
+    await tester.tap(find.byTooltip('Remove 250 g of Beef'));
     await tester.pumpAndSettle();
     verify(() => actions.decrease(ProteinType.beef)).called(1);
     expect(find.text('Beef reduced'), findsOneWidget);
@@ -115,7 +115,7 @@ void main() {
   testWidgets('− is disabled when there is nothing to remove', (tester) async {
     await pump(tester);
 
-    await tester.tap(find.bySemanticsLabel('Remove 250 g of Mutton'));
+    await tester.tap(find.byTooltip('Remove 250 g of Mutton'));
     await tester.pumpAndSettle();
     verifyNever(() => actions.decrease(any()));
   });

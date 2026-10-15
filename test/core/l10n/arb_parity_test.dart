@@ -12,7 +12,7 @@ Set<String> _messageKeys(Map<String, dynamic> arb) =>
     arb.keys.where((k) => !k.startsWith('@')).toSet();
 
 Set<String> _placeholders(String message) =>
-    RegExp(r'\{(\w+)').allMatches(message).map((m) => m.group(1)!).toSet();
+    RegExp(r'\{(\w+)[,}]').allMatches(message).map((m) => m.group(1)!).toSet();
 
 void main() {
   final en = _readArb('en');

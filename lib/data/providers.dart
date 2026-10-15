@@ -4,6 +4,7 @@ import 'package:aaj_kya_pakayen/data/repositories_impl/drift_dish_repository.dar
 import 'package:aaj_kya_pakayen/data/repositories_impl/drift_pantry_repository.dart';
 import 'package:aaj_kya_pakayen/data/repositories_impl/drift_settings_repository.dart';
 import 'package:aaj_kya_pakayen/data/repositories_impl/noop_sync_repository.dart';
+import 'package:aaj_kya_pakayen/domain/entities/app_settings.dart';
 import 'package:aaj_kya_pakayen/domain/repositories/dinner_log_repository.dart';
 import 'package:aaj_kya_pakayen/domain/repositories/dish_repository.dart';
 import 'package:aaj_kya_pakayen/domain/repositories/pantry_repository.dart';
@@ -40,3 +41,7 @@ SettingsRepository settingsRepository(Ref ref) =>
 
 @Riverpod(keepAlive: true)
 SyncRepository syncRepository(Ref ref) => const NoopSyncRepository();
+
+@Riverpod(keepAlive: true)
+Stream<AppSettings> appSettings(Ref ref) =>
+    ref.watch(settingsRepositoryProvider).watch();

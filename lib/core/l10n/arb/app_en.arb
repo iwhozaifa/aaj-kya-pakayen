@@ -1,25 +1,193 @@
 {
   "@@locale": "en",
   "appTitle": "Aaj Kya Pakayen",
-  "@appTitle": {"description": "App name shown in the title bar and launcher."},
+  "@appTitle": {
+    "description": "App name shown in the title bar and launcher."
+  },
   "tagline": "Dinner, decided.",
-  "@tagline": {"description": "Brand tagline under the app name."},
+  "@tagline": {
+    "description": "Brand tagline under the app name."
+  },
   "navToday": "Today",
-  "@navToday": {"description": "Bottom navigation: today's suggestion."},
+  "@navToday": {
+    "description": "Bottom navigation: today's suggestion."
+  },
   "navPantry": "Stock",
-  "@navPantry": {"description": "Bottom navigation: meat stock in the freezer."},
+  "@navPantry": {
+    "description": "Bottom navigation: meat stock in the freezer."
+  },
   "navHistory": "History",
-  "@navHistory": {"description": "Bottom navigation: past dinners."},
+  "@navHistory": {
+    "description": "Bottom navigation: past dinners."
+  },
   "navDishes": "Dishes",
-  "@navDishes": {"description": "Bottom navigation: dish catalogue."},
+  "@navDishes": {
+    "description": "Bottom navigation: dish catalogue."
+  },
   "navSettings": "Settings",
-  "@navSettings": {"description": "Bottom navigation: settings."},
+  "@navSettings": {
+    "description": "Bottom navigation: settings."
+  },
   "vegDay": "Veg day",
-  "@vegDay": {"description": "Day type label: vegetables / pulses tonight."},
+  "@vegDay": {
+    "description": "Day type label: vegetables / pulses tonight."
+  },
   "nonVegDay": "Meat day",
-  "@nonVegDay": {"description": "Day type label: meat tonight."},
+  "@nonVegDay": {
+    "description": "Day type label: meat tonight."
+  },
   "undo": "Undo",
-  "@undo": {"description": "Snackbar action that reverses the last change."},
+  "@undo": {
+    "description": "Snackbar action that reverses the last change."
+  },
   "comingSoon": "Coming soon",
-  "@comingSoon": {"description": "Badge for features that are not available yet."}
+  "@comingSoon": {
+    "description": "Badge for features that are not available yet."
+  },
+  "proteinChicken": "Chicken",
+  "@proteinChicken": {
+    "description": "Protein name."
+  },
+  "proteinBeef": "Beef",
+  "@proteinBeef": {
+    "description": "Protein name."
+  },
+  "proteinMutton": "Mutton",
+  "@proteinMutton": {
+    "description": "Protein name (goat)."
+  },
+  "proteinMince": "Mince",
+  "@proteinMince": {
+    "description": "Protein name: minced meat (qeema)."
+  },
+  "amountKg": "{kg} kg",
+  "@amountKg": {
+    "description": "Amount in kilograms.",
+    "placeholders": {
+      "kg": {
+        "type": "String"
+      }
+    }
+  },
+  "amountGrams": "{grams} g",
+  "@amountGrams": {
+    "description": "Amount in grams.",
+    "placeholders": {
+      "grams": {
+        "type": "int"
+      }
+    }
+  },
+  "pantryTitle": "Meat stock",
+  "@pantryTitle": {
+    "description": "Pantry screen title."
+  },
+  "pantryLow": "Low",
+  "@pantryLow": {
+    "description": "Badge: not enough for one meal."
+  },
+  "pantryNone": "None in stock",
+  "@pantryNone": {
+    "description": "Tile text when a protein has no stock."
+  },
+  "pantryOldest": "Oldest: {days, plural, =0{bought today} =1{1 day} other{{days} days}}",
+  "@pantryOldest": {
+    "description": "Age of the oldest batch.",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "pantryIncrease": "Add {amount} of {protein}",
+  "@pantryIncrease": {
+    "description": "Screen-reader label for the + button.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryDecrease": "Remove {amount} of {protein}",
+  "@pantryDecrease": {
+    "description": "Screen-reader label for the − button.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryAdded": "{amount} {protein} added",
+  "@pantryAdded": {
+    "description": "Snackbar after adding stock.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryReduced": "{protein} reduced",
+  "@pantryReduced": {
+    "description": "Snackbar after reducing stock.",
+    "placeholders": {
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryHint": "Tap + or − to change stock by {amount}.",
+  "@pantryHint": {
+    "description": "Help text under the tiles.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryAddPurchase": "Add purchase",
+  "@pantryAddPurchase": {
+    "description": "Button that opens the purchase form."
+  },
+  "purchaseWhat": "What did you buy?",
+  "@purchaseWhat": {
+    "description": "Purchase form: protein question."
+  },
+  "purchaseHowMuch": "How much?",
+  "@purchaseHowMuch": {
+    "description": "Purchase form: amount question."
+  },
+  "purchaseWhen": "Bought on {date}",
+  "@purchaseWhen": {
+    "description": "Purchase form: date line.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseChangeDate": "Change date",
+  "@purchaseChangeDate": {
+    "description": "Purchase form: button to pick another date."
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Generic save button."
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Generic cancel button."
+  },
+  "errorGeneric": "Something went wrong. Please try again.",
+  "@errorGeneric": {
+    "description": "Shown when loading data fails."
+  }
 }

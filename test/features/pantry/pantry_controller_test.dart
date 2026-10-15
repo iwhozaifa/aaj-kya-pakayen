@@ -81,6 +81,7 @@ void main() {
       boughtOn: DateTime(2026, 10, 12),
     );
 
+    container.listen(pantrySummaryProvider, (_, _) {});
     final summary = await container.read(pantrySummaryProvider.future);
 
     expect(summary.map((s) => s.protein), ProteinType.values);
