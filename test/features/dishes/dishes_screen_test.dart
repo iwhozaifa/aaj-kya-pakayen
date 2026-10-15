@@ -4,6 +4,7 @@ import 'package:aaj_kya_pakayen/domain/enums/cooking_style.dart';
 import 'package:aaj_kya_pakayen/domain/enums/dish_type.dart';
 import 'package:aaj_kya_pakayen/domain/enums/staple_pairing.dart';
 import 'package:aaj_kya_pakayen/domain/usecases/dish_catalog.dart';
+import 'package:aaj_kya_pakayen/features/dishes/add_dish_sheet.dart';
 import 'package:aaj_kya_pakayen/features/dishes/dishes_controller.dart';
 import 'package:aaj_kya_pakayen/features/dishes/dishes_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ final Map<String, Dish> _byName = {
   for (final d in pakistaniDishes) d.nameEn: d,
 };
 
-final _mine = Dish(
+const _mine = Dish(
   id: firstCustomDishId,
   nameEn: 'Ammi ka Qorma',
   nameUr: 'امی کا قورمہ',
@@ -31,7 +32,7 @@ final _mine = Dish(
   isCustom: true,
 );
 
-final _dishes = [
+final List<Dish> _dishes = [
   _byName['Aloo Gobi']!.copyWith(isActive: false),
   _byName['Bhindi Masala']!,
   _byName['Chicken Karahi']!,
@@ -153,6 +154,8 @@ void main() {
   testWidgets('a hidden dish can be suggested again', (tester) async {
     await pump(tester);
 
+    await tester.ensureVisible(find.text('Aloo Gobi'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Aloo Gobi'));
     await tester.pumpAndSettle();
     verify(
@@ -164,16 +167,24 @@ void main() {
     expect(find.text('Aloo Gobi will be suggested again'), findsOneWidget);
   });
 
-  testWidgets('adds a dish of her own; undo removes it', (tester) async {
-    await pump(tester);
+  testWidgets('adds a custom dish; undo removes it', (tester) async {
+    await pump(tester, dishes: [..._dishes]..remove(_mine));
 
     await tester.tap(find.text('Add dish'));
     await tester.pumpAndSettle();
     expect(find.text('New dish'), findsOneWidget);
 
+    Finder inSheet(String chip) => find.descendant(
+      of: find.byType(AddDishSheet),
+      matching: find.widgetWithText(ChoiceChip, chip),
+    );
+    await tester.tap(inSheet('Mutton'));
+    await tester.ensureVisible(inSheet('90 min'));
+    await tester.pumpAndSettle();
+    await tester.tap(inSheet('90 min'));
     await tester.enterText(find.byType(TextField).last, 'Ammi ka Qorma');
-    await tester.tap(find.widgetWithText(ChoiceChip, 'Mutton'));
-    await tester.tap(find.widgetWithText(ChoiceChip, '90 min'));
+    // Close the keyboard as the cook would before tapping Save.
+    FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.text('Save'));
     await tester.tap(find.text('Save'));

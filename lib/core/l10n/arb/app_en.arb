@@ -472,5 +472,150 @@
         "type": "String"
       }
     }
+  },
+  "dishesTitle": "Dishes",
+  "@dishesTitle": {
+    "description": "Dishes screen title."
+  },
+  "dishesSearch": "Search dishes",
+  "@dishesSearch": {
+    "description": "Search field label."
+  },
+  "dishesClearSearch": "Clear search",
+  "@dishesClearSearch": {
+    "description": "Tooltip for clearing the search."
+  },
+  "dishesAll": "All",
+  "@dishesAll": {
+    "description": "Filter chip showing every dish type."
+  },
+  "dishTypeVegetable": "Sabzi",
+  "@dishTypeVegetable": {
+    "description": "Dish type: vegetable."
+  },
+  "dishTypePulse": "Daal",
+  "@dishTypePulse": {
+    "description": "Dish type: lentils and pulses."
+  },
+  "dishesSubtitle": "{type}, {minutes} min",
+  "@dishesSubtitle": {
+    "description": "Dish list subtitle: type and cooking time.",
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "dishesMine": "My dish",
+  "@dishesMine": {
+    "description": "Badge on a dish the cook added."
+  },
+  "dishesHidden": "Not suggested",
+  "@dishesHidden": {
+    "description": "Shown on a dish switched off."
+  },
+  "dishesHiddenSnack": "{dish} won't be suggested",
+  "@dishesHiddenSnack": {
+    "description": "Snackbar after switching a dish off.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "dishesShownSnack": "{dish} will be suggested again",
+  "@dishesShownSnack": {
+    "description": "Snackbar after switching a dish back on.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "dishesNone": "No dishes found",
+  "@dishesNone": {
+    "description": "Empty state when nothing matches."
+  },
+  "dishesNoneHint": "Try another name or type.",
+  "@dishesNoneHint": {
+    "description": "Empty state hint."
+  },
+  "dishesAdd": "Add dish",
+  "@dishesAdd": {
+    "description": "Button opening the add-dish sheet."
+  },
+  "dishesAdded": "{dish} added",
+  "@dishesAdded": {
+    "description": "Snackbar after adding a dish.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "addDishTitle": "New dish",
+  "@addDishTitle": {
+    "description": "Add-dish sheet title."
+  },
+  "addDishName": "Dish name",
+  "@addDishName": {
+    "description": "Name field label."
+  },
+  "addDishNameRequired": "Please write a name",
+  "@addDishNameRequired": {
+    "description": "Error for a blank name."
+  },
+  "addDishDuplicate": "You already have {dish}",
+  "@addDishDuplicate": {
+    "description": "Error for a name already in the list.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "addDishType": "What kind of dish?",
+  "@addDishType": {
+    "description": "Dish type question."
+  },
+  "addDishServedWith": "Eaten with",
+  "@addDishServedWith": {
+    "description": "Staple question."
+  },
+  "addDishStyle": "Cooking style",
+  "@addDishStyle": {
+    "description": "Cooking style question."
+  },
+  "addDishTime": "Cooking time",
+  "@addDishTime": {
+    "description": "Cooking time question."
+  },
+  "durationMinutes": "{minutes} min",
+  "@durationMinutes": {
+    "description": "A duration in minutes.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "stapleRice": "Rice",
+  "@stapleRice": {
+    "description": "Eaten with rice."
+  },
+  "stapleRoti": "Roti",
+  "@stapleRoti": {
+    "description": "Eaten with roti."
+  },
+  "stapleEither": "Rice or roti",
+  "@stapleEither": {
+    "description": "Eaten with either."
+  },
+  "stapleNone": "On its own",
+  "@stapleNone": {
+    "description": "A complete meal, e.g. biryani."
   }
 }

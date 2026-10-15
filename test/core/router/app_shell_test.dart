@@ -48,7 +48,7 @@ void main() {
       await tester.tap(find.descendant(of: bar, matching: find.text('پکوان')));
       await tester.pumpAndSettle();
       expect(find.byType(DishesScreen), findsOneWidget);
-      expect(find.text('چکن کڑاہی'), findsOneWidget);
+      expect(find.text('ڈش تلاش کریں'), findsOneWidget);
 
       await tester.tap(find.descendant(of: bar, matching: find.text('آج')));
       await tester.pumpAndSettle();

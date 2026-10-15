@@ -3,6 +3,7 @@ import 'package:aaj_kya_pakayen/domain/engine/reason.dart';
 import 'package:aaj_kya_pakayen/domain/entities/dish.dart';
 import 'package:aaj_kya_pakayen/domain/enums/cooking_style.dart';
 import 'package:aaj_kya_pakayen/domain/enums/day_type.dart';
+import 'package:aaj_kya_pakayen/domain/enums/dish_type.dart';
 import 'package:aaj_kya_pakayen/domain/enums/protein_type.dart';
 import 'package:aaj_kya_pakayen/domain/enums/staple_pairing.dart';
 import 'package:intl/intl.dart';
@@ -30,6 +31,19 @@ extension Labels on AppLocalizations {
   String dayType(DayType type) => switch (type) {
     DayType.vegDay => vegDay,
     DayType.nonVegDay => nonVegDay,
+  };
+
+  String dishType(DishType type) => switch (type) {
+    DishType.vegetable => dishTypeVegetable,
+    DishType.pulse => dishTypePulse,
+    _ => protein(type.proteinType!),
+  };
+
+  String staple(StaplePairing staple) => switch (staple) {
+    StaplePairing.rice => stapleRice,
+    StaplePairing.roti => stapleRoti,
+    StaplePairing.either => stapleEither,
+    StaplePairing.none => stapleNone,
   };
 
   String style(CookingStyle style) => switch (style) {
