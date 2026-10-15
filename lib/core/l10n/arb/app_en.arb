@@ -629,5 +629,167 @@
   "reminderChannel": "Dinner reminder",
   "@reminderChannel": {
     "description": "Android notification channel name."
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Settings screen title."
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Language section."
+  },
+  "languageUrdu": "اردو",
+  "@languageUrdu": {
+    "description": "Urdu, always written in Urdu."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English, always written in English."
+  },
+  "settingsHousehold": "People at dinner",
+  "@settingsHousehold": {
+    "description": "Household size section."
+  },
+  "peopleCount": "{count, plural, =1{1 person} other{{count} people}}",
+  "@peopleCount": {
+    "description": "Number of people.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "morePeople": "More people",
+  "@morePeople": {
+    "description": "Tooltip: increase household size."
+  },
+  "fewerPeople": "Fewer people",
+  "@fewerPeople": {
+    "description": "Tooltip: decrease household size."
+  },
+  "settingsRepeatWindow": "Don't repeat a dish for",
+  "@settingsRepeatWindow": {
+    "description": "Repeat window section."
+  },
+  "daysCount": "{count, plural, =1{1 day} other{{count} days}}",
+  "@daysCount": {
+    "description": "Number of days.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "moreDays": "More days",
+  "@moreDays": {
+    "description": "Tooltip: longer repeat window."
+  },
+  "fewerDays": "Fewer days",
+  "@fewerDays": {
+    "description": "Tooltip: shorter repeat window."
+  },
+  "settingsTimeBudget": "Time to cook",
+  "@settingsTimeBudget": {
+    "description": "Time budget section."
+  },
+  "budgetQuick": "Up to 30 min",
+  "@budgetQuick": {
+    "description": "Quick time budget."
+  },
+  "budgetNormal": "Up to 1 hour",
+  "@budgetNormal": {
+    "description": "Normal time budget."
+  },
+  "budgetElaborate": "No limit",
+  "@budgetElaborate": {
+    "description": "No time limit."
+  },
+  "settingsCuisines": "Cuisine packs",
+  "@settingsCuisines": {
+    "description": "Cuisine packs section."
+  },
+  "cuisinePakistani": "Pakistani",
+  "@cuisinePakistani": {
+    "description": "Cuisine name."
+  },
+  "cuisineIndian": "Indian",
+  "@cuisineIndian": {
+    "description": "Cuisine name."
+  },
+  "cuisineAfghan": "Afghan",
+  "@cuisineAfghan": {
+    "description": "Cuisine name."
+  },
+  "cuisineChinese": "Chinese",
+  "@cuisineChinese": {
+    "description": "Cuisine name."
+  },
+  "cuisineIncluded": "Included",
+  "@cuisineIncluded": {
+    "description": "The pack in use."
+  },
+  "settingsReminder": "Daily reminder",
+  "@settingsReminder": {
+    "description": "Reminder switch."
+  },
+  "settingsReminderHint": "A nudge to decide dinner in time.",
+  "@settingsReminderHint": {
+    "description": "Reminder switch subtitle."
+  },
+  "settingsReminderTime": "Reminder time",
+  "@settingsReminderTime": {
+    "description": "Reminder time row."
+  },
+  "settingsReminderDenied": "Notifications are off for this app. Allow them in your phone settings.",
+  "@settingsReminderDenied": {
+    "description": "Shown when notification permission is refused."
+  },
+  "onboardingStep": "Step {step} of {total}",
+  "@onboardingStep": {
+    "description": "Onboarding progress.",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingLanguage": "Choose your language",
+  "@onboardingLanguage": {
+    "description": "Onboarding step 1."
+  },
+  "onboardingHousehold": "How many people eat dinner at home?",
+  "@onboardingHousehold": {
+    "description": "Onboarding step 2."
+  },
+  "onboardingStock": "How much meat is at home right now?",
+  "@onboardingStock": {
+    "description": "Onboarding step 3."
+  },
+  "onboardingStockHint": "You can change this any time in Stock.",
+  "@onboardingStockHint": {
+    "description": "Onboarding step 3 hint."
+  },
+  "stockNone": "None",
+  "@stockNone": {
+    "description": "No meat of this kind."
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next step."
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Previous step."
+  },
+  "onboardingStart": "Start",
+  "@onboardingStart": {
+    "description": "Finish onboarding."
+  },
+  "settingsReminderSection": "Reminder",
+  "@settingsReminderSection": {
+    "description": "Reminder section heading."
   }
 }

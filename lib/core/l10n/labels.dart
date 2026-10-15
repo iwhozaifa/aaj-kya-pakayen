@@ -1,11 +1,13 @@
 import 'package:aaj_kya_pakayen/core/l10n/generated/app_localizations.dart';
 import 'package:aaj_kya_pakayen/domain/engine/reason.dart';
+import 'package:aaj_kya_pakayen/domain/entities/cuisine_pack.dart';
 import 'package:aaj_kya_pakayen/domain/entities/dish.dart';
 import 'package:aaj_kya_pakayen/domain/enums/cooking_style.dart';
 import 'package:aaj_kya_pakayen/domain/enums/day_type.dart';
 import 'package:aaj_kya_pakayen/domain/enums/dish_type.dart';
 import 'package:aaj_kya_pakayen/domain/enums/protein_type.dart';
 import 'package:aaj_kya_pakayen/domain/enums/staple_pairing.dart';
+import 'package:aaj_kya_pakayen/domain/enums/time_budget.dart';
 import 'package:intl/intl.dart';
 
 /// Localized names for domain values. The domain holds no UI strings.
@@ -44,6 +46,19 @@ extension Labels on AppLocalizations {
     StaplePairing.roti => stapleRoti,
     StaplePairing.either => stapleEither,
     StaplePairing.none => stapleNone,
+  };
+
+  String timeBudget(TimeBudget budget) => switch (budget) {
+    TimeBudget.quick => budgetQuick,
+    TimeBudget.normal => budgetNormal,
+    TimeBudget.elaborate => budgetElaborate,
+  };
+
+  String cuisine(CuisinePack pack) => switch (pack) {
+    CuisinePack.pakistani => cuisinePakistani,
+    CuisinePack.indian => cuisineIndian,
+    CuisinePack.afghan => cuisineAfghan,
+    CuisinePack.chinese => cuisineChinese,
   };
 
   String style(CookingStyle style) => switch (style) {

@@ -43,6 +43,8 @@ void main() {
           .read(settingsRepositoryProvider)
           .save(const AppSettings(onboardingComplete: true)),
     );
+    // Give drift's change stream a real moment to deliver the update.
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
     await tester.pumpAndSettle();
 
     expect(find.byType(OnboardingScreen), findsNothing);

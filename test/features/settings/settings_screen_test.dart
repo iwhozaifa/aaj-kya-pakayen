@@ -101,7 +101,11 @@ void main() {
   ) async {
     await pump(tester);
 
-    await tester.ensureVisible(find.text('Pakistani'));
+    await tester.scrollUntilVisible(
+      find.text('Chinese'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.text('Pakistani'), findsOneWidget);
     expect(find.text('Indian'), findsOneWidget);
     expect(find.text('Coming soon'), findsNWidgets(3));
@@ -122,9 +126,7 @@ void main() {
 
     await tapVisible(tester, find.text('Daily reminder'));
     expect(
-      find.text(
-        'Notifications are off for this app. Allow them in your phone settings.',
-      ),
+      find.textContaining('Notifications are off for this app.'),
       findsOneWidget,
     );
   });
