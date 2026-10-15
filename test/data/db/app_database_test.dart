@@ -1,5 +1,4 @@
 import 'package:aaj_kya_pakayen/data/db/app_database.dart';
-import 'package:drift/drift.dart' hide isNotNull;
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/test_database.dart';
@@ -16,8 +15,8 @@ void main() {
           .toList();
 
   Future<void> insertDish(int id) => db.customStatement(
-    "INSERT INTO dishes (id, name_en, name_ur, dish_type, is_veg, "
-    "staple_pairing, cooking_style, prep_minutes) "
+    'INSERT INTO dishes (id, name_en, name_ur, dish_type, is_veg, '
+    'staple_pairing, cooking_style, prep_minutes) '
     "VALUES ($id, 'd$id', 'd$id', 'vegetable', 1, 'roti', 'curry', 30)",
   );
 
@@ -64,7 +63,7 @@ void main() {
     expect(columns.single.read<String>('name'), 'date');
 
     const insert =
-        "INSERT INTO dinner_log (date, day_type, source, created_at) "
+        'INSERT INTO dinner_log (date, day_type, source, created_at) '
         "VALUES ('2026-10-15', 'vegDay', 'home', 0)";
     await db.customStatement(insert);
     await expectLater(db.customStatement(insert), throwsA(isA<Exception>()));
