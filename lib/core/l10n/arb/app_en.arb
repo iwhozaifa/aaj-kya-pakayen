@@ -617,5 +617,17 @@
   "stapleNone": "On its own",
   "@stapleNone": {
     "description": "A complete meal, e.g. biryani."
+  },
+  "reminderTitle": "What's for dinner?",
+  "@reminderTitle": {
+    "description": "Daily reminder notification title."
+  },
+  "reminderBody": "Tap to see tonight's idea.",
+  "@reminderBody": {
+    "description": "Daily reminder notification text."
+  },
+  "reminderChannel": "Dinner reminder",
+  "@reminderChannel": {
+    "description": "Android notification channel name."
   }
 }

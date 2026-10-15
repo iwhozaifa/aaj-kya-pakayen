@@ -24,8 +24,7 @@ void main() {
         appDatabaseProvider.overrideWithValue(db),
         reminderSchedulerProvider.overrideWithValue(reminders),
       ],
-    );
-    container.listen(appSettingsProvider, (_, _) {});
+    )..listen(appSettingsProvider, (_, _) {});
   });
   tearDown(() => db.close());
 

@@ -114,5 +114,8 @@
   "stapleRice": "چاول",
   "stapleRoti": "روٹی",
   "stapleEither": "چاول یا روٹی",
-  "stapleNone": "اکیلے"
+  "stapleNone": "اکیلے",
+  "reminderTitle": "آج کیا پکائیں؟",
+  "reminderBody": "آج رات کا مشورہ دیکھنے کے لیے ٹیپ کریں۔",
+  "reminderChannel": "کھانے کی یاد دہانی"
 }
