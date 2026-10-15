@@ -71,5 +71,20 @@
   "styleFry": "تلی ہوئی ڈش",
   "styleStew": "شوربے والی ڈش",
   "styleRiceDish": "چاول کی ڈش",
-  "styleOther": "دوسری ڈش"
+  "styleOther": "دوسری ڈش",
+  "historyTitle": "پچھلے کھانے",
+  "historyThisWeek": "پچھلے سات دن",
+  "historyAll": "سب کھانے",
+  "historyEmpty": "ابھی کوئی کھانا درج نہیں",
+  "historyEmptyHint": "آج کا کھانا \"آج\" والے صفحے سے درج کریں۔",
+  "historyEditTitle": "{date} کا کھانا",
+  "historyAddFor": "{date} کا کھانا درج کریں",
+  "historyCookedHome": "گھر پر پکا",
+  "historyOrderedOutside": "باہر سے منگوایا",
+  "historyDish": "ڈش",
+  "historySide": "ساتھ میں (اختیاری)",
+  "historyNoSide": "کچھ نہیں",
+  "historyDelete": "حذف کریں",
+  "historySaved": "{date} کا کھانا محفوظ ہو گیا",
+  "historyDeleted": "{date} کا کھانا حذف ہو گیا"
 }

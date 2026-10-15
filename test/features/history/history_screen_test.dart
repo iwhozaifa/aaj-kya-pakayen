@@ -75,7 +75,7 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue(_karahiNight);
-    registerFallbackValue(_byName['Daal Chawal']!);
+    registerFallbackValue(_byName['Daal Chawal']);
     registerFallbackValue(DateTime(2026));
   });
 
@@ -174,7 +174,13 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Dinner on ${_label(_day(14))}'), findsOneWidget);
 
-    await tester.tap(find.byType(DropdownMenu<Dish>));
+    final field = find.descendant(
+      of: find.byType(DropdownMenu<Dish>),
+      matching: find.byType(TextField),
+    );
+    await tester.tap(field);
+    await tester.pumpAndSettle();
+    await tester.enterText(field, 'Aloo Q');
     await tester.pumpAndSettle();
     await tester.tap(find.text('Aloo Qeema').last);
     await tester.pumpAndSettle();

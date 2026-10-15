@@ -392,5 +392,85 @@
   "styleOther": "other dish",
   "@styleOther": {
     "description": "Cooking style."
+  },
+  "historyTitle": "History",
+  "@historyTitle": {
+    "description": "History screen title."
+  },
+  "historyThisWeek": "Last 7 days",
+  "@historyThisWeek": {
+    "description": "Week strip heading."
+  },
+  "historyAll": "All dinners",
+  "@historyAll": {
+    "description": "Heading over the full list."
+  },
+  "historyEmpty": "No dinners logged yet",
+  "@historyEmpty": {
+    "description": "Empty state title."
+  },
+  "historyEmptyHint": "Log tonight's dinner from the Today tab.",
+  "@historyEmptyHint": {
+    "description": "Empty state hint."
+  },
+  "historyEditTitle": "Dinner on {date}",
+  "@historyEditTitle": {
+    "description": "Edit sheet title.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "historyAddFor": "Add dinner for {date}",
+  "@historyAddFor": {
+    "description": "Tooltip on an empty day.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "historyCookedHome": "Cooked at home",
+  "@historyCookedHome": {
+    "description": "Edit sheet: home option."
+  },
+  "historyOrderedOutside": "Ordered outside",
+  "@historyOrderedOutside": {
+    "description": "Edit sheet: outside option."
+  },
+  "historyDish": "Dish",
+  "@historyDish": {
+    "description": "Edit sheet: main dish field."
+  },
+  "historySide": "Side (optional)",
+  "@historySide": {
+    "description": "Edit sheet: side dish field."
+  },
+  "historyNoSide": "No side",
+  "@historyNoSide": {
+    "description": "Side option meaning none."
+  },
+  "historyDelete": "Delete",
+  "@historyDelete": {
+    "description": "Delete a logged dinner."
+  },
+  "historySaved": "Dinner on {date} saved",
+  "@historySaved": {
+    "description": "Snackbar after saving.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "historyDeleted": "Dinner on {date} deleted",
+  "@historyDeleted": {
+    "description": "Snackbar after deleting.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   }
 }
