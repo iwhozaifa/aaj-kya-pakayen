@@ -1,0 +1,799 @@
+{
+  "@@locale": "en",
+  "appTitle": "Aaj Kya Pakayen",
+  "@appTitle": {
+    "description": "App name shown in the title bar and launcher."
+  },
+  "tagline": "Dinner, decided.",
+  "@tagline": {
+    "description": "Brand tagline under the app name."
+  },
+  "navToday": "Today",
+  "@navToday": {
+    "description": "Bottom navigation: today's suggestion."
+  },
+  "navPantry": "Stock",
+  "@navPantry": {
+    "description": "Bottom navigation: meat stock in the freezer."
+  },
+  "navHistory": "History",
+  "@navHistory": {
+    "description": "Bottom navigation: past dinners."
+  },
+  "navDishes": "Dishes",
+  "@navDishes": {
+    "description": "Bottom navigation: dish catalogue."
+  },
+  "navSettings": "Settings",
+  "@navSettings": {
+    "description": "Bottom navigation: settings."
+  },
+  "vegDay": "Sabzi day",
+  "@vegDay": {
+    "description": "Day type: vegetables or pulses tonight."
+  },
+  "nonVegDay": "Gosht day",
+  "@nonVegDay": {
+    "description": "Day type: meat or ordering outside tonight."
+  },
+  "undo": "Undo",
+  "@undo": {
+    "description": "Snackbar action that reverses the last change."
+  },
+  "comingSoon": "Coming soon",
+  "@comingSoon": {
+    "description": "Badge for features that are not available yet."
+  },
+  "proteinChicken": "Chicken",
+  "@proteinChicken": {
+    "description": "Protein name."
+  },
+  "proteinBeef": "Beef",
+  "@proteinBeef": {
+    "description": "Protein name."
+  },
+  "proteinMutton": "Mutton",
+  "@proteinMutton": {
+    "description": "Protein name (goat)."
+  },
+  "proteinMince": "Mince",
+  "@proteinMince": {
+    "description": "Protein name: minced meat (qeema)."
+  },
+  "amountKg": "{kg} kg",
+  "@amountKg": {
+    "description": "Amount in kilograms.",
+    "placeholders": {
+      "kg": {
+        "type": "String"
+      }
+    }
+  },
+  "amountGrams": "{grams} g",
+  "@amountGrams": {
+    "description": "Amount in grams.",
+    "placeholders": {
+      "grams": {
+        "type": "int"
+      }
+    }
+  },
+  "pantryTitle": "Meat stock",
+  "@pantryTitle": {
+    "description": "Pantry screen title."
+  },
+  "pantryLow": "Low",
+  "@pantryLow": {
+    "description": "Badge: not enough for one meal."
+  },
+  "pantryNone": "None in stock",
+  "@pantryNone": {
+    "description": "Tile text when a protein has no stock."
+  },
+  "pantryOldest": "Oldest: {days, plural, =0{bought today} =1{1 day} other{{days} days}}",
+  "@pantryOldest": {
+    "description": "Age of the oldest batch.",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "pantryIncrease": "Add {amount} of {protein}",
+  "@pantryIncrease": {
+    "description": "Screen-reader label for the + button.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryDecrease": "Remove {amount} of {protein}",
+  "@pantryDecrease": {
+    "description": "Screen-reader label for the − button.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryAdded": "{amount} {protein} added",
+  "@pantryAdded": {
+    "description": "Snackbar after adding stock.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryReduced": "{protein} reduced",
+  "@pantryReduced": {
+    "description": "Snackbar after reducing stock.",
+    "placeholders": {
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryHint": "Tap + or − to change stock by {amount}.",
+  "@pantryHint": {
+    "description": "Help text under the tiles.",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "pantryAddPurchase": "Add purchase",
+  "@pantryAddPurchase": {
+    "description": "Button that opens the purchase form."
+  },
+  "purchaseWhat": "What did you buy?",
+  "@purchaseWhat": {
+    "description": "Purchase form: protein question."
+  },
+  "purchaseHowMuch": "How much?",
+  "@purchaseHowMuch": {
+    "description": "Purchase form: amount question."
+  },
+  "purchaseWhen": "Bought on {date}",
+  "@purchaseWhen": {
+    "description": "Purchase form: date line.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseChangeDate": "Change date",
+  "@purchaseChangeDate": {
+    "description": "Purchase form: button to pick another date."
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Generic save button."
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Generic cancel button."
+  },
+  "errorGeneric": "Something went wrong. Please try again.",
+  "@errorGeneric": {
+    "description": "Shown when loading data fails."
+  },
+  "todaySwapped": "Swapped for tonight",
+  "@todaySwapped": {
+    "description": "Shown when tonight's type was swapped."
+  },
+  "todayCookThis": "Cooking this",
+  "@todayCookThis": {
+    "description": "Main button: log the suggestion as tonight's dinner."
+  },
+  "todayAnother": "Show another",
+  "@todayAnother": {
+    "description": "Button: next suggestion."
+  },
+  "todayOutside": "Ordering outside",
+  "@todayOutside": {
+    "description": "Button: log an outside dinner."
+  },
+  "todaySwap": "Swap day type",
+  "@todaySwap": {
+    "description": "Button: swap veg/meat for tonight."
+  },
+  "todayOtherIdeas": "Other ideas",
+  "@todayOtherIdeas": {
+    "description": "Heading over the other suggestions."
+  },
+  "todayCook": "Cook",
+  "@todayCook": {
+    "description": "Small button to cook another idea."
+  },
+  "todayWithSide": "with {side}",
+  "@todayWithSide": {
+    "description": "Side dish line.",
+    "placeholders": {
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "todayLoggedTitle": "Tonight's dinner",
+  "@todayLoggedTitle": {
+    "description": "Heading once tonight is logged."
+  },
+  "todayChange": "Change",
+  "@todayChange": {
+    "description": "Button: undo tonight's log to choose again."
+  },
+  "todayLogged": "{dish} logged for tonight",
+  "@todayLogged": {
+    "description": "Snackbar after logging a home dinner.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "todayOutsideLogged": "Outside dinner logged",
+  "@todayOutsideLogged": {
+    "description": "Snackbar after logging an outside dinner."
+  },
+  "todayNoIdeas": "Nothing fits tonight",
+  "@todayNoIdeas": {
+    "description": "Empty state title."
+  },
+  "todayNoIdeasHint": "Try swapping the day type or turning dishes back on.",
+  "@todayNoIdeasHint": {
+    "description": "Empty state hint."
+  },
+  "outsideTitle": "Order from outside tonight",
+  "@outsideTitle": {
+    "description": "Outside suggestion title."
+  },
+  "outsideLogged": "Ordered from outside",
+  "@outsideLogged": {
+    "description": "Logged outside dinner."
+  },
+  "outsideNoteLabel": "Note (optional)",
+  "@outsideNoteLabel": {
+    "description": "Outside dinner note field label."
+  },
+  "outsideNoteHint": "e.g. biryani from the corner shop",
+  "@outsideNoteHint": {
+    "description": "Outside dinner note hint."
+  },
+  "reasonProteinInStock": "{protein} in stock for {days} days",
+  "@reasonProteinInStock": {
+    "description": "Reason: use the oldest stock first.",
+    "placeholders": {
+      "protein": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonDifferentProtein": "Not {protein} again",
+  "@reasonDifferentProtein": {
+    "description": "Reason: last meat day used another protein.",
+    "placeholders": {
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonFreshStyle": "No {style} this week",
+  "@reasonFreshStyle": {
+    "description": "Reason: cooking style not used this week.",
+    "placeholders": {
+      "style": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonFitsTime": "Ready in {minutes} min",
+  "@reasonFitsTime": {
+    "description": "Reason: fits the time budget.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonServedRice": "Goes with rice",
+  "@reasonServedRice": {
+    "description": "Reason: pulse dish eaten with rice."
+  },
+  "reasonServedRoti": "Goes with roti",
+  "@reasonServedRoti": {
+    "description": "Reason: pulse dish eaten with roti."
+  },
+  "reasonServedEither": "With rice or roti",
+  "@reasonServedEither": {
+    "description": "Reason: pulse dish eaten with either."
+  },
+  "reasonNotCookedFor": "Not cooked for {days} days",
+  "@reasonNotCookedFor": {
+    "description": "Reason: not cooked for a long time.",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonRestock": "Buy {proteins} to cook at home",
+  "@reasonRestock": {
+    "description": "Restock hint when no meat dish is possible.",
+    "placeholders": {
+      "proteins": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonRestockAny": "Buy some meat to cook at home",
+  "@reasonRestockAny": {
+    "description": "Restock hint without specific proteins."
+  },
+  "listOr": "{rest} or {last}",
+  "@listOr": {
+    "description": "Joins the last item of a list.",
+    "placeholders": {
+      "rest": {
+        "type": "String"
+      },
+      "last": {
+        "type": "String"
+      }
+    }
+  },
+  "listSeparator": ", ",
+  "@listSeparator": {
+    "description": "Separator between list items."
+  },
+  "styleKarahi": "karahi",
+  "@styleKarahi": {
+    "description": "Cooking style."
+  },
+  "styleCurry": "curry",
+  "@styleCurry": {
+    "description": "Cooking style."
+  },
+  "styleBbq": "BBQ",
+  "@styleBbq": {
+    "description": "Cooking style."
+  },
+  "styleRoast": "roast",
+  "@styleRoast": {
+    "description": "Cooking style."
+  },
+  "styleFry": "fried dish",
+  "@styleFry": {
+    "description": "Cooking style."
+  },
+  "styleStew": "stew",
+  "@styleStew": {
+    "description": "Cooking style."
+  },
+  "styleRiceDish": "rice dish",
+  "@styleRiceDish": {
+    "description": "Cooking style."
+  },
+  "styleOther": "other dish",
+  "@styleOther": {
+    "description": "Cooking style."
+  },
+  "historyTitle": "History",
+  "@historyTitle": {
+    "description": "History screen title."
+  },
+  "historyThisWeek": "Last 7 days",
+  "@historyThisWeek": {
+    "description": "Week strip heading."
+  },
+  "historyAll": "All dinners",
+  "@historyAll": {
+    "description": "Heading over the full list."
+  },
+  "historyEmpty": "No dinners logged yet",
+  "@historyEmpty": {
+    "description": "Empty state title."
+  },
+  "historyEmptyHint": "Log tonight's dinner from the Today tab.",
+  "@historyEmptyHint": {
+    "description": "Empty state hint."
+  },
+  "historyEditTitle": "Dinner on {date}",
+  "@historyEditTitle": {
+    "description": "Edit sheet title.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "historyAddFor": "Add dinner for {date}",
+  "@historyAddFor": {
+    "description": "Tooltip on an empty day.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "historyCookedHome": "Cooked at home",
+  "@historyCookedHome": {
+    "description": "Edit sheet: home option."
+  },
+  "historyOrderedOutside": "Ordered outside",
+  "@historyOrderedOutside": {
+    "description": "Edit sheet: outside option."
+  },
+  "historyDish": "Dish",
+  "@historyDish": {
+    "description": "Edit sheet: main dish field."
+  },
+  "historySide": "Side (optional)",
+  "@historySide": {
+    "description": "Edit sheet: side dish field."
+  },
+  "historyNoSide": "No side",
+  "@historyNoSide": {
+    "description": "Side option meaning none."
+  },
+  "historyDelete": "Delete",
+  "@historyDelete": {
+    "description": "Delete a logged dinner."
+  },
+  "historySaved": "Dinner on {date} saved",
+  "@historySaved": {
+    "description": "Snackbar after saving.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "historyDeleted": "Dinner on {date} deleted",
+  "@historyDeleted": {
+    "description": "Snackbar after deleting.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dishesTitle": "Dishes",
+  "@dishesTitle": {
+    "description": "Dishes screen title."
+  },
+  "dishesSearch": "Search dishes",
+  "@dishesSearch": {
+    "description": "Search field label."
+  },
+  "dishesClearSearch": "Clear search",
+  "@dishesClearSearch": {
+    "description": "Tooltip for clearing the search."
+  },
+  "dishesAll": "All",
+  "@dishesAll": {
+    "description": "Filter chip showing every dish type."
+  },
+  "dishTypeVegetable": "Sabzi",
+  "@dishTypeVegetable": {
+    "description": "Dish type: vegetable."
+  },
+  "dishTypePulse": "Daal",
+  "@dishTypePulse": {
+    "description": "Dish type: lentils and pulses."
+  },
+  "dishesSubtitle": "{type}, {minutes} min",
+  "@dishesSubtitle": {
+    "description": "Dish list subtitle: type and cooking time.",
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "dishesMine": "My dish",
+  "@dishesMine": {
+    "description": "Badge on a dish the cook added."
+  },
+  "dishesHidden": "Not suggested",
+  "@dishesHidden": {
+    "description": "Shown on a dish switched off."
+  },
+  "dishesHiddenSnack": "{dish} won't be suggested",
+  "@dishesHiddenSnack": {
+    "description": "Snackbar after switching a dish off.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "dishesShownSnack": "{dish} will be suggested again",
+  "@dishesShownSnack": {
+    "description": "Snackbar after switching a dish back on.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "dishesNone": "No dishes found",
+  "@dishesNone": {
+    "description": "Empty state when nothing matches."
+  },
+  "dishesNoneHint": "Try another name or type.",
+  "@dishesNoneHint": {
+    "description": "Empty state hint."
+  },
+  "dishesAdd": "Add dish",
+  "@dishesAdd": {
+    "description": "Button opening the add-dish sheet."
+  },
+  "dishesAdded": "{dish} added",
+  "@dishesAdded": {
+    "description": "Snackbar after adding a dish.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "addDishTitle": "New dish",
+  "@addDishTitle": {
+    "description": "Add-dish sheet title."
+  },
+  "addDishName": "Dish name",
+  "@addDishName": {
+    "description": "Name field label."
+  },
+  "addDishNameRequired": "Please write a name",
+  "@addDishNameRequired": {
+    "description": "Error for a blank name."
+  },
+  "addDishDuplicate": "You already have {dish}",
+  "@addDishDuplicate": {
+    "description": "Error for a name already in the list.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "addDishType": "What kind of dish?",
+  "@addDishType": {
+    "description": "Dish type question."
+  },
+  "addDishServedWith": "Eaten with",
+  "@addDishServedWith": {
+    "description": "Staple question."
+  },
+  "addDishStyle": "Cooking style",
+  "@addDishStyle": {
+    "description": "Cooking style question."
+  },
+  "addDishTime": "Cooking time",
+  "@addDishTime": {
+    "description": "Cooking time question."
+  },
+  "durationMinutes": "{minutes} min",
+  "@durationMinutes": {
+    "description": "A duration in minutes.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "stapleRice": "Rice",
+  "@stapleRice": {
+    "description": "Eaten with rice."
+  },
+  "stapleRoti": "Roti",
+  "@stapleRoti": {
+    "description": "Eaten with roti."
+  },
+  "stapleEither": "Rice or roti",
+  "@stapleEither": {
+    "description": "Eaten with either."
+  },
+  "stapleNone": "On its own",
+  "@stapleNone": {
+    "description": "A complete meal, e.g. biryani."
+  },
+  "reminderTitle": "What's for dinner?",
+  "@reminderTitle": {
+    "description": "Daily reminder notification title."
+  },
+  "reminderBody": "Tap to see tonight's idea.",
+  "@reminderBody": {
+    "description": "Daily reminder notification text."
+  },
+  "reminderChannel": "Dinner reminder",
+  "@reminderChannel": {
+    "description": "Android notification channel name."
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Settings screen title."
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Language section."
+  },
+  "languageUrdu": "اردو",
+  "@languageUrdu": {
+    "description": "Urdu, always written in Urdu."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English, always written in English."
+  },
+  "settingsHousehold": "People at dinner",
+  "@settingsHousehold": {
+    "description": "Household size section."
+  },
+  "peopleCount": "{count, plural, =1{1 person} other{{count} people}}",
+  "@peopleCount": {
+    "description": "Number of people.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "morePeople": "More people",
+  "@morePeople": {
+    "description": "Tooltip: increase household size."
+  },
+  "fewerPeople": "Fewer people",
+  "@fewerPeople": {
+    "description": "Tooltip: decrease household size."
+  },
+  "settingsRepeatWindow": "Don't repeat a dish for",
+  "@settingsRepeatWindow": {
+    "description": "Repeat window section."
+  },
+  "daysCount": "{count, plural, =1{1 day} other{{count} days}}",
+  "@daysCount": {
+    "description": "Number of days.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "moreDays": "More days",
+  "@moreDays": {
+    "description": "Tooltip: longer repeat window."
+  },
+  "fewerDays": "Fewer days",
+  "@fewerDays": {
+    "description": "Tooltip: shorter repeat window."
+  },
+  "settingsTimeBudget": "Time to cook",
+  "@settingsTimeBudget": {
+    "description": "Time budget section."
+  },
+  "budgetQuick": "Up to 30 min",
+  "@budgetQuick": {
+    "description": "Quick time budget."
+  },
+  "budgetNormal": "Up to 1 hour",
+  "@budgetNormal": {
+    "description": "Normal time budget."
+  },
+  "budgetElaborate": "No limit",
+  "@budgetElaborate": {
+    "description": "No time limit."
+  },
+  "settingsCuisines": "Cuisine packs",
+  "@settingsCuisines": {
+    "description": "Cuisine packs section."
+  },
+  "cuisinePakistani": "Pakistani",
+  "@cuisinePakistani": {
+    "description": "Cuisine name."
+  },
+  "cuisineIndian": "Indian",
+  "@cuisineIndian": {
+    "description": "Cuisine name."
+  },
+  "cuisineAfghan": "Afghan",
+  "@cuisineAfghan": {
+    "description": "Cuisine name."
+  },
+  "cuisineChinese": "Chinese",
+  "@cuisineChinese": {
+    "description": "Cuisine name."
+  },
+  "cuisineIncluded": "Included",
+  "@cuisineIncluded": {
+    "description": "The pack in use."
+  },
+  "settingsReminder": "Daily reminder",
+  "@settingsReminder": {
+    "description": "Reminder switch."
+  },
+  "settingsReminderHint": "A nudge to decide dinner in time.",
+  "@settingsReminderHint": {
+    "description": "Reminder switch subtitle."
+  },
+  "settingsReminderTime": "Reminder time",
+  "@settingsReminderTime": {
+    "description": "Reminder time row."
+  },
+  "settingsReminderDenied": "Notifications are off for this app. Allow them in your phone settings.",
+  "@settingsReminderDenied": {
+    "description": "Shown when notification permission is refused."
+  },
+  "onboardingStep": "Step {step} of {total}",
+  "@onboardingStep": {
+    "description": "Onboarding progress.",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingLanguage": "Choose your language",
+  "@onboardingLanguage": {
+    "description": "Onboarding step 1."
+  },
+  "onboardingHousehold": "How many people eat dinner at home?",
+  "@onboardingHousehold": {
+    "description": "Onboarding step 2."
+  },
+  "onboardingStock": "How much meat is at home right now?",
+  "@onboardingStock": {
+    "description": "Onboarding step 3."
+  },
+  "onboardingStockHint": "You can change this any time in Stock.",
+  "@onboardingStockHint": {
+    "description": "Onboarding step 3 hint."
+  },
+  "stockNone": "None",
+  "@stockNone": {
+    "description": "No meat of this kind."
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next step."
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Previous step."
+  },
+  "onboardingStart": "Start",
+  "@onboardingStart": {
+    "description": "Finish onboarding."
+  },
+  "settingsReminderSection": "Reminder",
+  "@settingsReminderSection": {
+    "description": "Reminder section heading."
+  },
+  "tryAgain": "Try again",
+  "@tryAgain": {
+    "description": "Button that reloads after an error."
+  }
+}
