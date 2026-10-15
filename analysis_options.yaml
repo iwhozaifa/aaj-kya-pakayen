@@ -5,6 +5,7 @@ analyzer:
     - build/**
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - lib/core/l10n/generated/**
     - android/**
     - ios/**
     - web/**
