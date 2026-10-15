@@ -24,5 +24,27 @@ abstract interface class PantryRepository {
     int? dinnerLogId,
   });
 
-  Future<List<PantryMovement>> getMovements({int? dinnerLogId});
+  /// Takes [grams] of [proteinType] from the oldest batches first, one
+  /// movement per batch. Throws [StateError] if there is not enough stock.
+  Future<List<PantryMovement>> deductFifo({
+    required ProteinType proteinType,
+    required int grams,
+    required MovementReason reason,
+    int? dinnerLogId,
+  });
+
+  /// Quick "+": adds [grams] to the newest batch, or starts one.
+  Future<PantryMovement> addToNewest({
+    required ProteinType proteinType,
+    required int grams,
+  });
+
+  /// Undo: reverses the movements' effect on their batches and deletes them.
+  /// A batch left with no movements (an undone purchase) is deleted too.
+  Future<void> revertMovements(Iterable<int> movementIds);
+
+  Future<List<PantryMovement>> getMovements({
+    int? dinnerLogId,
+    int? pantryItemId,
+  });
 }

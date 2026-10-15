@@ -217,7 +217,7 @@ void main() {
       await repo.addPurchase(
         proteinType: ProteinType.mince,
         grams: 500,
-        addedOn: DateTime(2026, 10, 1),
+        addedOn: DateTime(2026, 10),
       );
       final newest = await repo.addPurchase(
         proteinType: ProteinType.mince,
