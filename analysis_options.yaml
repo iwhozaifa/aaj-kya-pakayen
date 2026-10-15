@@ -6,6 +6,7 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - lib/core/l10n/generated/**
+    - test/data/db/migrations/generated/**
     - android/**
     - ios/**
     - web/**
