@@ -1,11 +1,12 @@
 import 'package:aaj_kya_pakayen/app.dart';
-import 'package:aaj_kya_pakayen/core/l10n/locale_provider.dart';
 import 'package:aaj_kya_pakayen/core/theme/app_theme.dart';
 import 'package:aaj_kya_pakayen/core/utils/clock.dart';
 import 'package:aaj_kya_pakayen/core/widgets/app_logo.dart';
 import 'package:aaj_kya_pakayen/data/db/app_database.dart';
 import 'package:aaj_kya_pakayen/data/providers.dart';
+import 'package:aaj_kya_pakayen/data/repositories_impl/drift_settings_repository.dart';
 import 'package:aaj_kya_pakayen/data/seed/dish_seeder.dart';
+import 'package:aaj_kya_pakayen/domain/entities/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,6 +21,9 @@ void main() {
   setUp(() async {
     db = newTestDatabase();
     await DishSeeder(db).seedIfNeeded();
+    // Past the first-run questions; onboarding has its own tests.
+    await DriftSettingsRepository(db)
+        .save(const AppSettings(onboardingComplete: true));
     container = ProviderContainer(
       overrides: [
         appDatabaseProvider.overrideWithValue(db),
@@ -59,7 +63,13 @@ void main() {
 
   testWidgets('follows the selected locale', (tester) async {
     await pumpApp(tester);
-    container.read(appLocaleProvider.notifier).set(const Locale('en'));
+    await tester.runAsync(
+      () => container
+          .read(settingsRepositoryProvider)
+          .save(
+            const AppSettings(languageCode: 'en', onboardingComplete: true),
+          ),
+    );
     await tester.pumpAndSettle();
 
     final context = tester.element(find.byType(AppLogo));
