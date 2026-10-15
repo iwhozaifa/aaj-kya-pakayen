@@ -52,6 +52,9 @@ class DriftDishRepository implements DishRepository {
   Future<void> setActive(int dishId, {required bool active}) =>
       _dao.setActive(dishId, active: active);
 
+  @override
+  Future<void> deleteCustom(int dishId) => _dao.deleteCustom(dishId);
+
   static Dish _toDish(DishRow r) => Dish(
     id: r.id,
     nameEn: r.nameEn,

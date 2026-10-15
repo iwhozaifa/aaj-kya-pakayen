@@ -4,6 +4,9 @@ import 'package:aaj_kya_pakayen/domain/enums/cooking_style.dart';
 import 'package:aaj_kya_pakayen/domain/enums/dish_type.dart';
 import 'package:aaj_kya_pakayen/domain/enums/staple_pairing.dart';
 
+export 'package:aaj_kya_pakayen/domain/entities/dish.dart'
+    show firstCustomDishId;
+
 // Built-in Pakistani dishes. Ids are stable forever: history rows point at
 // them. Ranges: 1–29 vegetable, 30–49 pulse, 50–69 chicken, 70–79 beef,
 // 80–89 mutton, 90–99 mince. Custom dishes start at [firstCustomDishId].
@@ -13,8 +16,6 @@ import 'package:aaj_kya_pakayen/domain/enums/staple_pairing.dart';
 
 /// Bump when the seed list changes so existing installs pick it up.
 const seedVersion = 1;
-
-const firstCustomDishId = 10000;
 
 Dish _veg(
   int id,

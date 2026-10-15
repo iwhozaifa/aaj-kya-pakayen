@@ -10,6 +10,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'dish.freezed.dart';
 part 'dish.g.dart';
 
+/// Ids below this are built-in dishes; custom dishes count up from here.
+const firstCustomDishId = 10000;
+
 @freezed
 abstract class Dish with _$Dish {
   const factory Dish({

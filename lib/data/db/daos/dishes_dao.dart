@@ -43,4 +43,7 @@ class DishesDao extends DatabaseAccessor<AppDatabase> with _$DishesDaoMixin {
       (update(dishes)..where((d) => d.id.equals(id))).write(
         DishesCompanion(isActive: Value(active)),
       );
+
+  Future<void> deleteCustom(int id) =>
+      (delete(dishes)..where((d) => d.id.equals(id) & d.isCustom)).go();
 }

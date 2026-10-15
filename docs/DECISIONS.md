@@ -150,3 +150,15 @@ Turmeric text on cream fails WCAG contrast. Outlined and text buttons use Chai B
 
 ## D-028 — Font fallback between scripts
 The Urdu theme falls back to Nunito, and the English theme falls back to Noto Nastaliq Urdu. User text such as outside notes can be in either script; without the fallback, Latin text in Urdu mode rendered as missing-glyph boxes.
+
+## D-029 — Custom dishes
+- **One name, used for both languages.** The add sheet asks for a single name, typed in Urdu or English, and stores it as both `name_en` and `name_ur`. Asking for two names would make the form twice as long, and a dish the cook named herself reads correctly in either language.
+- **Names must be unique.** The check ignores case and extra spaces and covers both languages and hidden dishes. The sheet shows the clash before saving, and `AddCustomDish` checks again.
+- **Ids continue from 10000** (`firstCustomDishId`, now defined in the domain). Each new dish gets the highest custom id plus one, so ids are never reused while history might point at them.
+- **Meat portions default** to 200 g per adult, or 150 g for mince, matching the seed. Custom dishes are never offered as sides, because sides come only from curated pairings (D-020).
+- **No delete.** Built-in and custom dishes are switched off ("Not suggested") instead, which keeps history intact. Only the undo straight after adding a dish deletes it, through `deleteCustom`, which ignores built-in ids.
+
+## D-030 — Dishes screen layout
+- **Type filters** are a wrapping row of chips rather than a horizontally scrolling one, so no chip is hidden off-screen (no hidden gestures).
+- **"Add dish"** is a full-width button fixed below the list rather than a floating action button, so it never covers a dish's switch.
+- **Each dish row** is a whole-row `SwitchListTile`, a large tap target. Switching it off or on shows an undo snackbar. Hidden dishes stay listed, after the active ones, so they can be switched back on.
