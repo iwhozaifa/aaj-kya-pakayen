@@ -50,7 +50,9 @@ class ProteinTile extends StatelessWidget {
                     stock.grams == 0
                         ? l10n.pantryNone
                         : l10n.grams(stock.grams),
-                    style: textTheme.headlineMedium,
+                    style: stock.grams == 0
+                        ? textTheme.titleMedium
+                        : textTheme.headlineMedium,
                   ),
                   if (oldestDays != null)
                     Text(
