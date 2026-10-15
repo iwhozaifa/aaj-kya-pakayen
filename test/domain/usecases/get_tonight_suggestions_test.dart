@@ -14,13 +14,13 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../engine/fixtures.dart';
 
-class _Dishes extends Mock implements DishRepository {}
+class _Dishes extends Mock implements DishRepository;
 
-class _Log extends Mock implements DinnerLogRepository {}
+class _Log extends Mock implements DinnerLogRepository;
 
-class _Pantry extends Mock implements PantryRepository {}
+class _Pantry extends Mock implements PantryRepository;
 
-class _Settings extends Mock implements SettingsRepository {}
+class _Settings extends Mock implements SettingsRepository;
 
 void main() {
   late _Dishes dishes;
