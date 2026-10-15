@@ -49,9 +49,9 @@ void main() {
             'labelMedium': theme.textTheme.labelMedium,
             'labelSmall': theme.textTheme.labelSmall,
           };
-          styles.forEach((name, style) {
+          for (final MapEntry(key: name, value: style) in styles.entries) {
             expect(style?.fontSize, greaterThanOrEqualTo(18), reason: name);
-          });
+          }
         });
 
         test('keeps touch targets at least 48dp', () {
