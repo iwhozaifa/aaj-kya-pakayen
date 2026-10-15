@@ -59,7 +59,7 @@ void main() {
 
     final renamed = [
       for (final d in pakistaniDishes)
-        d.id == 2 ? d.copyWith(prepMinutes: 25) : d,
+        if (d.id == 2) d.copyWith(prepMinutes: 25) else d,
     ];
     final seeded = await seeder.seedIfNeeded(
       version: seedVersion + 1,
