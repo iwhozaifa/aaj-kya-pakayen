@@ -39,7 +39,7 @@ class _Showcase extends StatelessWidget {
         const SizedBox(height: 12),
         SectionCard(
           title: t('Freezer', 'فریزر'),
-          child: Text(t('Chicken · 2 kg', 'مرغی · ۲ کلو')),
+          child: Text(t('Chicken · 2 kg', 'مرغی — ۲ کلو')),
         ),
         EmptyState(
           icon: Icons.kitchen,

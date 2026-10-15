@@ -62,8 +62,9 @@ abstract final class AppTheme {
       ),
       cardTheme: const CardThemeData(
         color: AppColors.white,
-        elevation: 1,
+        elevation: 0,
         shape: RoundedRectangleBorder(
+          side: BorderSide(color: AppColors.saffronTint, width: 2),
           borderRadius: BorderRadius.all(Radius.circular(cardRadius)),
         ),
       ),
