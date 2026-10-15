@@ -15,6 +15,7 @@ It is built Urdu-first, with large text, for Pakistani home cooks.
 ```bash
 flutter pub get
 dart run build_runner build -d
+flutter gen-l10n
 flutter run
 ```
 
@@ -24,7 +25,7 @@ Requires Flutter 3.47.x (Dart 3.13).
 
 ```bash
 flutter analyze
-flutter test --coverage
+flutter test --coverage          # add --update-goldens after an intended UI change
 scripts/check_domain_coverage.sh 80
 ```
 

@@ -57,3 +57,22 @@ Until ARB files exist (#2), the placeholder home screen shows only an icon, so t
 At the owner's request, all work from `feature/design-system` onward is test-driven: a failing
 `test:` commit comes before each `feat:`/`fix:` commit (see GIT_WORKFLOW.md). The bootstrap PR is
 mostly scaffolding and configuration, so only its domain enum and layering rules come with tests.
+
+## D-010 — Localization output is generated, not committed
+`flutter gen-l10n` writes to `lib/core/l10n/generated/`. That folder is git-ignored and created in CI,
+like the build_runner output (D-005). Urdu (`ur`) is the default locale; `appLocaleProvider` holds it
+until the Settings screen persists the choice (#10).
+
+## D-011 — Goldens use the real fonts
+`test/flutter_test_config.dart` loads the bundled fonts and Material Icons, so golden files show real
+Nastaliq and Latin text instead of the Ahem test font. Goldens are made on Linux, the same platform as
+CI. Regenerate them with `flutter test --update-goldens` and review the PNGs in the PR. The PR
+screenshots are these goldens.
+
+## D-012 — Cards use a border instead of a shadow
+Cards use a 2dp Saffron-tint border with no elevation. That reads better on the Cream background
+and stays crisp in goldens. Buttons are at least 56dp tall (the brief asks for 48dp), and `BigButton`
+is 64dp.
+
+## D-013 — Urdu text avoids the middle dot
+In Nastaliq, `·` looks like the Urdu zero `٠`. Urdu strings use `—` or `،` as separators.

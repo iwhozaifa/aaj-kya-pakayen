@@ -57,3 +57,6 @@ app.*.map.json
 android/key.properties
 *.jks
 *.keystore
+
+# Generated localizations (flutter gen-l10n, run in CI)
+lib/core/l10n/generated/
