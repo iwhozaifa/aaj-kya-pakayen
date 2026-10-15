@@ -1,5 +1,4 @@
 import 'package:aaj_kya_pakayen/domain/engine/reason.dart';
-import 'package:aaj_kya_pakayen/domain/engine/suggestion.dart';
 import 'package:aaj_kya_pakayen/domain/engine/suggestion_engine.dart';
 import 'package:aaj_kya_pakayen/domain/entities/app_settings.dart';
 import 'package:aaj_kya_pakayen/domain/entities/dinner_log_entry.dart';
@@ -80,10 +79,7 @@ void main() {
   });
 
   test('non-veg day suggests meat dishes that the pantry can cover', () {
-    final r = suggest(
-      pantry: [batch(1, ProteinType.chicken, 800)],
-      settings: const AppSettings(householdSize: 4),
-    );
+    final r = suggest(pantry: [batch(1, ProteinType.chicken, 800)]);
     expect(r.dayType, DayType.nonVegDay);
     expect(mains(r), unorderedEquals([chickenKarahi, whiteKarahi]));
     expect(r.canOrderOutside, isTrue);
@@ -157,7 +153,7 @@ void main() {
     expect(mains(r), [minceCurry]);
   });
 
-  test("swap override suggests the other type for tonight", () {
+  test('swap override suggests the other type for tonight', () {
     final r = suggest(
       settings: AppSettings(
         dayTypeOverride: DayTypeOverride(date: today, dayType: DayType.vegDay),
