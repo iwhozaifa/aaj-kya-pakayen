@@ -4,6 +4,7 @@ import 'package:aaj_kya_pakayen/core/l10n/generated/app_localizations.dart';
 import 'package:aaj_kya_pakayen/core/l10n/labels.dart';
 import 'package:aaj_kya_pakayen/core/theme/app_colors.dart';
 import 'package:aaj_kya_pakayen/core/widgets/empty_state.dart';
+import 'package:aaj_kya_pakayen/core/widgets/error_state.dart';
 import 'package:aaj_kya_pakayen/core/widgets/undo_snack_bar.dart';
 import 'package:aaj_kya_pakayen/data/providers.dart';
 import 'package:aaj_kya_pakayen/domain/entities/dinner_log_entry.dart';
@@ -104,11 +105,8 @@ class HistoryScreen extends ConsumerWidget {
             ],
           ],
         ),
-        AsyncError() => Center(
-          child: EmptyState(
-            icon: Icons.error_outline,
-            title: l10n.errorGeneric,
-          ),
+        AsyncError() => ErrorState(
+          onRetry: () => ref.invalidate(historyStateProvider),
         ),
         _ => const Center(child: CircularProgressIndicator()),
       },
