@@ -43,9 +43,8 @@ void main() {
     expect(find.byType(PantryScreen), findsOneWidget);
     expect(find.text('گوشت کا اسٹاک'), findsOneWidget);
 
-    await tester.tap(
-      find.descendant(of: bar, matching: find.text('پچھلے کھانے')),
-    );
+    // Five tabs leave room for one short Urdu word each (D-032).
+    await tester.tap(find.descendant(of: bar, matching: find.text('ریکارڈ')));
     await tester.pumpAndSettle();
     expect(find.byType(HistoryScreen), findsOneWidget);
 
