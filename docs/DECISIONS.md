@@ -115,3 +115,15 @@ when the no-repeat rule is the cause.
 ## D-020 — Side dishes come only from curated pairings
 The engine proposes a side only from `dish_pairings`. It never pairs ad hoc with any `can_be_side`
 dish. This keeps combinations culturally sensible. A side must also pass the no-repeat rule.
+
+## D-021 — Pantry quick adjust and undo
+- **The − button** removes 250 g, or whatever is left, oldest batch first (FIFO), with reason `adjust`.
+- **The + button** adds 250 g to the newest batch, or starts a new batch. That keeps the use-it-first age honest: a top-up doesn't make old meat look new.
+- **Undo** deletes the movements and restores the batches (`revertMovements`), so the ledger doesn't fill with correction rows. An undone purchase removes its batch.
+- **Low stock** means less than `household × 200 g`, i.e. not enough for one typical meat dinner.
+
+## D-022 — Urdu protein names
+Tiles use the everyday kitchen words چکن، بیف، مٹن، قیمہ instead of the formal "مرغی / گائے کا گوشت / بکرے کا گوشت". They match the dish names and fit on one line at large text sizes.
+
+## D-023 — Navigation grows tab by tab
+The bottom `NavigationBar` (go_router `StatefulShellRoute`) starts with Today and Stock. History, Dishes and Settings join as their branches land, so there are never tabs that lead to empty screens.

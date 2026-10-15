@@ -40,6 +40,14 @@ test/         mirrors lib/, plus engine/ property-style tests and architecture/
 docs/         this file, DATABASE.md, BRANDING.md, GIT_WORKFLOW.md, DECISIONS.md
 ```
 
+## Features
+
+| Feature | Screen | State |
+| --- | --- | --- |
+| Pantry (`features/pantry/`) | `PantryScreen`: four protein tiles, ± 250 g, add purchase | `pantrySummaryProvider` (stream of `ProteinStock`), `PantryActions` (add, ±, undo through `PantryUndo`) |
+
+"Now" comes from `clockProvider` (`core/utils/clock.dart`), so tests can pin the date.
+
 ## State management and navigation
 
 - **Riverpod** (`flutter_riverpod` + `riverpod_generator`). Repositories are exposed as providers in
