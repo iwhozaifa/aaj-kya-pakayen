@@ -91,6 +91,17 @@ void main() {
       expect(body.height, greaterThanOrEqualTo(1.8));
     });
 
+    test('mixed-script text falls back to the other script font', () {
+      final urdu = AppTheme.light(urdu: true).textTheme;
+      final english = AppTheme.light(urdu: false).textTheme;
+      for (final style in [urdu.bodyLarge!, urdu.titleMedium!]) {
+        expect(style.fontFamilyFallback, contains(AppFonts.body));
+      }
+      for (final style in [english.bodyLarge!, english.titleMedium!]) {
+        expect(style.fontFamilyFallback, contains(AppFonts.urdu));
+      }
+    });
+
     test('uses Poppins headings and Nunito body for English', () {
       final theme = AppTheme.light(urdu: false);
       expect(theme.textTheme.headlineMedium!.fontFamily, AppFonts.heading);
