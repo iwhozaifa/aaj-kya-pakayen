@@ -60,3 +60,7 @@ android/key.properties
 
 # Generated localizations (flutter gen-l10n, run in CI)
 lib/core/l10n/generated/
+
+# Golden test failure output
+test/failures/
+**/failures/*.png
