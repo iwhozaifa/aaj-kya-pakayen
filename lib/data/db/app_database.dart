@@ -1,4 +1,8 @@
 import 'package:aaj_kya_pakayen/data/db/converters.dart';
+import 'package:aaj_kya_pakayen/data/db/daos/dinner_log_dao.dart';
+import 'package:aaj_kya_pakayen/data/db/daos/dishes_dao.dart';
+import 'package:aaj_kya_pakayen/data/db/daos/pantry_dao.dart';
+import 'package:aaj_kya_pakayen/data/db/daos/settings_dao.dart';
 import 'package:aaj_kya_pakayen/data/db/tables.dart';
 import 'package:aaj_kya_pakayen/domain/enums/cooking_style.dart';
 import 'package:aaj_kya_pakayen/domain/enums/day_type.dart';
@@ -13,6 +17,7 @@ import 'package:drift_flutter/drift_flutter.dart';
 part 'app_database.g.dart';
 
 @DriftDatabase(
+  daos: [DishesDao, PantryDao, DinnerLogDao, SettingsDao],
   tables: [
     Dishes,
     DishPairings,
