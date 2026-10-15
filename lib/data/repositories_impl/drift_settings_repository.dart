@@ -15,6 +15,19 @@ class DriftSettingsRepository implements SettingsRepository {
 
   static const _date = DateOnlyConverter();
 
+  /// Keys written by [save]; other rows (e.g. `seed_version`) are kept.
+  static const ownedKeys = {
+    'household_size',
+    'repeat_window_days',
+    'language',
+    'enabled_cuisines',
+    'reminder_enabled',
+    'reminder_time',
+    'time_budget',
+    'onboarding_complete',
+    'day_type_override',
+  };
+
   @override
   Future<AppSettings> load() async => _fromMap(await _dao.all());
 
@@ -22,7 +35,8 @@ class DriftSettingsRepository implements SettingsRepository {
   Stream<AppSettings> watch() => _dao.watchAll().map(_fromMap);
 
   @override
-  Future<void> save(AppSettings settings) => _dao.replaceAll(_toMap(settings));
+  Future<void> save(AppSettings settings) =>
+      _dao.replaceOwned(ownedKeys, _toMap(settings));
 
   static Map<String, String> _toMap(AppSettings s) {
     String two(int n) => n.toString().padLeft(2, '0');
