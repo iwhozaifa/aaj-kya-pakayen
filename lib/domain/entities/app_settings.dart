@@ -42,6 +42,20 @@ abstract class AppSettings with _$AppSettings {
   factory AppSettings.fromJson(Map<String, dynamic> json) =>
       _$AppSettingsFromJson(json);
 
+  /// Allowed household sizes (people eating dinner).
+  static const ({int min, int max}) householdSizes = (min: 1, max: 20);
+
+  /// Allowed no-repeat windows, in days.
+  static const ({int min, int max}) repeatWindows = (min: 3, max: 14);
+
+  AppSettings withHouseholdSize(int size) => copyWith(
+    householdSize: size.clamp(householdSizes.min, householdSizes.max),
+  );
+
+  AppSettings withRepeatWindow(int days) => copyWith(
+    repeatWindowDays: days.clamp(repeatWindows.min, repeatWindows.max),
+  );
+
   DayType? overrideFor(DateTime date) {
     final override = dayTypeOverride;
     return override != null && override.date.isSameDay(date)

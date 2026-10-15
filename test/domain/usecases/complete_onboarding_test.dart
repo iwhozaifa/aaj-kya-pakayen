@@ -17,7 +17,10 @@ void main() {
   late CompleteOnboarding completeOnboarding;
   final today = DateTime(2026, 10, 15);
 
-  setUpAll(() => registerFallbackValue(const AppSettings()));
+  setUpAll(() {
+    registerFallbackValue(const AppSettings());
+    registerFallbackValue(ProteinType.chicken);
+  });
 
   setUp(() {
     settings = _Settings();
@@ -38,6 +41,7 @@ void main() {
         proteinType: i.namedArguments[#proteinType] as ProteinType,
         quantityGrams: i.namedArguments[#grams] as int,
         addedOn: today,
+        updatedAt: today,
       ),
     );
   });
