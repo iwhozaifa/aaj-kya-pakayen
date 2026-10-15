@@ -1,5 +1,7 @@
 import 'package:aaj_kya_pakayen/core/l10n/generated/app_localizations.dart';
 import 'package:aaj_kya_pakayen/core/l10n/locale_provider.dart';
+import 'package:aaj_kya_pakayen/data/providers.dart';
+import 'package:aaj_kya_pakayen/domain/entities/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,13 +27,22 @@ void main() {
 
   group('appLocaleProvider', () {
     test('defaults to Urdu', () {
-      final container = ProviderContainer.test();
+      final container = ProviderContainer.test(
+        overrides: [
+          appSettingsProvider.overrideWithValue(const AsyncLoading()),
+        ],
+      );
       expect(container.read(appLocaleProvider), const Locale('ur'));
     });
 
-    test('can switch to English', () {
-      final container = ProviderContainer.test();
-      container.read(appLocaleProvider.notifier).set(const Locale('en'));
+    test('follows the saved language', () {
+      final container = ProviderContainer.test(
+        overrides: [
+          appSettingsProvider.overrideWithValue(
+            const AsyncData(AppSettings(languageCode: 'en')),
+          ),
+        ],
+      );
       expect(container.read(appLocaleProvider), const Locale('en'));
     });
   });

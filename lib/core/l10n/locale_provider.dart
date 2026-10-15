@@ -1,15 +1,10 @@
+import 'package:aaj_kya_pakayen/data/providers.dart';
 import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'locale_provider.g.dart';
 
-/// The app's display language. Urdu first; persisted via Settings later.
+/// The app's display language, from the saved settings. Urdu first.
 @Riverpod(keepAlive: true)
-class AppLocale extends _$AppLocale {
-  @override
-  Locale build() => const Locale('ur');
-
-  // Notifier methods are the Riverpod idiom for mutations.
-  // ignore: use_setters_to_change_properties
-  void set(Locale locale) => state = locale;
-}
+Locale appLocale(Ref ref) =>
+    Locale(ref.watch(appSettingsProvider).value?.languageCode ?? 'ur');

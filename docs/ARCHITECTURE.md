@@ -23,9 +23,11 @@ flowchart TD
 | `domain/` | Dart SDK, small pure-Dart packages (`freezed_annotation`, `meta`, `collection`) | `flutter`, `drift`, `data/`, `features/`, `core/` |
 | `data/` | `domain/`, `drift`, platform packages | `features/` |
 | `features/` | `domain/`, `core/`, Riverpod providers that expose repositories | `data/db/` (DAOs/tables) |
-| `core/` | Flutter, `domain/` enums for theming badges | `data/`, `features/` |
+| `core/` | Flutter, `domain/` enums for theming badges | `data/`, `features/` (except the app wiring below) |
 
-These rules are enforced by `test/architecture/layering_test.dart`.
+The app wiring is the exception: `core/router/` (routes to every screen), `core/startup/` (seeds and preloads), and `core/l10n/locale_provider.dart` (reads the saved language) import `data/providers.dart` and feature screens (D-033).
+
+The domain and feature rules are enforced by `test/architecture/layering_test.dart`.
 
 ## Folder layout
 
@@ -33,9 +35,10 @@ These rules are enforced by `test/architecture/layering_test.dart`.
 lib/
   main.dart / app.dart
   core/       theme/, l10n/, router/, utils/, constants/, widgets/
-  data/       db/ (Drift tables, DAOs, migrations), seed/, repositories_impl/
-  domain/     entities/, enums/, repositories/, engine/ (rules/, scoring/), usecases/
-  features/   today/, pantry/, history/, dishes/, settings/
+  data/       db/ (Drift tables, DAOs, migrations), seed/, repositories_impl/,
+              notifications/ (daily reminder)
+  domain/     entities/, enums/, repositories/, services/, engine/ (rules/, scoring/), usecases/
+  features/   today/, pantry/, history/, dishes/, settings/, onboarding/
 test/         mirrors lib/, plus engine/ property-style tests and architecture/
 docs/         this file, DATABASE.md, BRANDING.md, GIT_WORKFLOW.md, DECISIONS.md
 ```
@@ -48,6 +51,8 @@ docs/         this file, DATABASE.md, BRANDING.md, GIT_WORKFLOW.md, DECISIONS.md
 | History (`features/history/`) | `HistoryScreen`: 7-day strip, 60-day list, edit sheet (home dish and side, or outside, or delete) | `historyStateProvider`, `HistoryActions` (`saveHome`, `saveOutside`, `delete`, `restore` for undo) |
 | Dishes (`features/dishes/`) | `DishesScreen`: search, type filter chips, whole-row on/off switch per dish, add-dish sheet | `allDishesProvider`, `DishesActions` (`addCustom`, `undoAdd`, `setActive`); `filterDishes`, `AddCustomDish` in `domain/usecases/dish_catalog.dart` |
 | Pantry (`features/pantry/`) | `PantryScreen`: four protein tiles, ± 250 g, add purchase | `pantrySummaryProvider` (stream of `ProteinStock`), `PantryActions` (add, ±, undo through `PantryUndo`) |
+| Settings (`features/settings/`) | `SettingsScreen`: language, household and repeat-window steppers, time budget, daily reminder and time, cuisine packs | `appSettingsProvider`, `SettingsActions` (saves each change; reschedules the reminder through `ReminderScheduler`) |
+| Onboarding (`features/onboarding/`) | `OnboardingScreen` at `/welcome`: language, then household, then meat at home | `OnboardingActions` (`chooseLanguage`, `finish` through the `CompleteOnboarding` use case); the router redirects here until `onboardingComplete` |
 
 "Now" comes from `clockProvider` (`core/utils/clock.dart`), so tests can pin the date.
 

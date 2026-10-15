@@ -17,6 +17,18 @@ void main() {
     expect(s.onboardingComplete, isFalse);
   });
 
+  test('clamps household size and repeat window to sensible ranges', () {
+    expect(AppSettings.householdSizes, (min: 1, max: 20));
+    expect(AppSettings.repeatWindows, (min: 3, max: 14));
+    const s = AppSettings();
+    expect(s.withHouseholdSize(0).householdSize, 1);
+    expect(s.withHouseholdSize(6).householdSize, 6);
+    expect(s.withHouseholdSize(99).householdSize, 20);
+    expect(s.withRepeatWindow(1).repeatWindowDays, 3);
+    expect(s.withRepeatWindow(10).repeatWindowDays, 10);
+    expect(s.withRepeatWindow(30).repeatWindowDays, 14);
+  });
+
   test('a day type override only applies on its own date', () {
     final s = AppSettings(
       dayTypeOverride: DayTypeOverride(

@@ -162,3 +162,20 @@ The Urdu theme falls back to Nunito, and the English theme falls back to Noto Na
 - **Type filters** are a wrapping row of chips rather than a horizontally scrolling one, so no chip is hidden off-screen (no hidden gestures).
 - **"Add dish"** is a full-width button fixed below the list rather than a floating action button, so it never covers a dish's switch.
 - **Each dish row** is a whole-row `SwitchListTile`, a large tap target. Switching it off or on shows an undo snackbar. Hidden dishes stay listed, after the active ones, so they can be switched back on.
+
+## D-031 — Daily reminder
+- **Off by default, 4:30 PM when turned on.** Turning it on asks for notification permission. If permission is refused, the switch stays off and a snackbar explains how to allow it in the phone's settings.
+- **Inexact scheduling** (`AndroidScheduleMode.inexactAllowWhileIdle`) with `DateTimeComponents.time` repeats daily. A dinner nudge doesn't need to be exact to the minute, so the app avoids the exact-alarm permission that Android 14 restricts.
+- **Time zone** is the phone's own (`flutter_timezone`), falling back to Asia/Karachi. The boot receiver in the manifest re-creates the reminder after a restart.
+- **Text follows the app language.** Changing the time or language while the reminder is on reschedules it. Android names the channel only once, so the channel name shows both languages.
+- **Android only.** The app ships for Android. On other platforms `LocalNotificationsReminderScheduler` does nothing. The domain depends only on `ReminderScheduler`, and tests use a fake.
+
+## D-032 — Settings, onboarding and navigation
+- **Settings save as they change.** There is no Save button. The app follows through the settings stream: the language comes from `AppSettings.languageCode` (`appLocaleProvider`), and suggestions re-run on household, window or budget changes.
+- **Limits:** household 1–20 people and repeat window 3–14 days, clamped in `AppSettings`. The stepper buttons disable at the ends.
+- **Cuisine packs** list Pakistani as "Included" and Indian, Afghan and Chinese as "Coming soon". The Pakistani pack can't be switched off, because with it off there would be nothing to suggest.
+- **Onboarding** has three steps: language, household, then meat at home (None, 500 g, 1 kg, 2 kg or 3 kg per protein, saved as purchases made today). The language is saved as soon as it is chosen, so the next two steps appear in that language. The go_router redirect watches `onboardingComplete`, and startup loads settings before the first frame, so a returning cook never sees onboarding flash.
+- **Five tabs.** With five tabs there is room for one short word per label at 18sp. The Urdu History tab reads "ریکارڈ"; the screen title is still "پچھلے کھانے".
+
+## D-033 — App wiring lives in core
+`core/router`, `core/startup` and `core/l10n/locale_provider.dart` compose the app: they route to every feature screen, seed and preload data, and read the saved language. They import `data/providers.dart` and feature screens, which the plain `core/` rule forbids. These files are the documented exception rather than a separate `app/` layer, which would add a folder for three files. Reusable `core/` code (theme, widgets, labels, utils) still imports neither `data/` nor `features/`.
