@@ -48,4 +48,22 @@ void main() {
     ];
     expect(violations, isEmpty);
   });
+
+  test('core imports data and features only from the app wiring', () {
+    // docs/DECISIONS.md D-033.
+    const wiring = [
+      'lib/core/router/',
+      'lib/core/startup/',
+      'lib/core/l10n/locale_provider',
+    ];
+    final violations = <String>[
+      for (final file in dartFilesIn('lib/core'))
+        if (!wiring.any(file.path.startsWith))
+          for (final uri in importsOf(file))
+            if (uri.startsWith('package:aaj_kya_pakayen/data/') ||
+                uri.startsWith('package:aaj_kya_pakayen/features/'))
+              '${file.path} -> $uri',
+    ];
+    expect(violations, isEmpty);
+  });
 }
