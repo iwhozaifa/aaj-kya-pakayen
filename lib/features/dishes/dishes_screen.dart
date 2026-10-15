@@ -3,6 +3,7 @@ import 'package:aaj_kya_pakayen/core/l10n/labels.dart';
 import 'package:aaj_kya_pakayen/core/theme/app_colors.dart';
 import 'package:aaj_kya_pakayen/core/widgets/big_button.dart';
 import 'package:aaj_kya_pakayen/core/widgets/empty_state.dart';
+import 'package:aaj_kya_pakayen/core/widgets/error_state.dart';
 import 'package:aaj_kya_pakayen/core/widgets/undo_snack_bar.dart';
 import 'package:aaj_kya_pakayen/domain/entities/dish.dart';
 import 'package:aaj_kya_pakayen/domain/enums/dish_type.dart';
@@ -107,11 +108,8 @@ class _DishesScreenState extends ConsumerState<DishesScreen> {
             ..._results(l10n, all),
           ],
         ),
-        AsyncError() => Center(
-          child: EmptyState(
-            icon: Icons.error_outline,
-            title: l10n.errorGeneric,
-          ),
+        AsyncError() => ErrorState(
+          onRetry: () => ref.invalidate(allDishesProvider),
         ),
         _ => const Center(child: CircularProgressIndicator()),
       },

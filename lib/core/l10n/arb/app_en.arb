@@ -791,5 +791,9 @@
   "settingsReminderSection": "Reminder",
   "@settingsReminderSection": {
     "description": "Reminder section heading."
+  },
+  "tryAgain": "Try again",
+  "@tryAgain": {
+    "description": "Button that reloads after an error."
   }
 }

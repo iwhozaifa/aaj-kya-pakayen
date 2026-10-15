@@ -1,7 +1,7 @@
 import 'package:aaj_kya_pakayen/core/l10n/generated/app_localizations.dart';
 import 'package:aaj_kya_pakayen/core/l10n/labels.dart';
 import 'package:aaj_kya_pakayen/core/theme/app_colors.dart';
-import 'package:aaj_kya_pakayen/core/widgets/empty_state.dart';
+import 'package:aaj_kya_pakayen/core/widgets/error_state.dart';
 import 'package:aaj_kya_pakayen/core/widgets/number_stepper.dart';
 import 'package:aaj_kya_pakayen/core/widgets/section_card.dart';
 import 'package:aaj_kya_pakayen/data/providers.dart';
@@ -25,11 +25,8 @@ class SettingsScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l10n.settingsTitle)),
       body: switch (settings) {
         AsyncData(:final value) => _SettingsList(settings: value),
-        AsyncError() => Center(
-          child: EmptyState(
-            icon: Icons.error_outline,
-            title: l10n.errorGeneric,
-          ),
+        AsyncError() => ErrorState(
+          onRetry: () => ref.invalidate(appSettingsProvider),
         ),
         _ => const Center(child: CircularProgressIndicator()),
       },
@@ -75,7 +72,7 @@ class _SettingsList extends ConsumerWidget {
       children: [
         SectionCard(
           title: l10n.settingsLanguage,
-          child: _Choices(
+          child: _Options(
             values: const ['ur', 'en'],
             selected: settings.languageCode,
             label: (code) =>
@@ -109,7 +106,7 @@ class _SettingsList extends ConsumerWidget {
         ),
         SectionCard(
           title: l10n.settingsTimeBudget,
-          child: _Choices(
+          child: _Options(
             values: TimeBudget.values,
             selected: settings.timeBudget,
             label: l10n.timeBudget,
@@ -170,8 +167,9 @@ class _SettingsList extends ConsumerWidget {
   }
 }
 
-/// A wrapping row of choice chips; no hidden horizontal scrolling.
-class _Choices<T> extends StatelessWidget {
+/// One full-width row per option. Unlike chips, long labels can wrap at
+/// large text sizes.
+class _Options<T> extends StatelessWidget {
   const new({
     required this.values,
     required this.selected,
@@ -186,15 +184,29 @@ class _Choices<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
+    return Column(
       children: [
         for (final v in values)
-          ChoiceChip(
-            label: Text(label(v)),
-            selected: v == selected,
-            onSelected: (_) => onSelected(v),
+          Semantics(
+            inMutuallyExclusiveGroup: true,
+            checked: v == selected,
+            child: ListTile(
+              contentPadding: EdgeInsets.zero,
+              selected: v == selected,
+              selectedColor: AppColors.chaiBrown,
+              selectedTileColor: AppColors.saffronTint,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              leading: Icon(
+                v == selected
+                    ? Icons.radio_button_checked
+                    : Icons.radio_button_unchecked,
+                color: AppColors.chaiBrown,
+              ),
+              title: Text(label(v)),
+              onTap: () => onSelected(v),
+            ),
           ),
       ],
     );

@@ -13,39 +13,45 @@ class AppShell extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: navigationShell,
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: navigationShell.currentIndex,
-        onDestinationSelected: (index) => navigationShell.goBranch(
-          index,
-          initialLocation: index == navigationShell.currentIndex,
+      // Five labels share a 360 dp bar. They are already 18sp (1.5x the
+      // Material default) and have icons, so they don't grow further;
+      // at 2x they would split mid-word (docs/DECISIONS.md D-034).
+      bottomNavigationBar: MediaQuery.withClampedTextScaling(
+        maxScaleFactor: 1,
+        child: NavigationBar(
+          selectedIndex: navigationShell.currentIndex,
+          onDestinationSelected: (index) => navigationShell.goBranch(
+            index,
+            initialLocation: index == navigationShell.currentIndex,
+          ),
+          destinations: [
+            NavigationDestination(
+              icon: const Icon(Icons.soup_kitchen_outlined),
+              selectedIcon: const Icon(Icons.soup_kitchen),
+              label: l10n.navToday,
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.kitchen_outlined),
+              selectedIcon: const Icon(Icons.kitchen),
+              label: l10n.navPantry,
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.history_outlined),
+              selectedIcon: const Icon(Icons.history),
+              label: l10n.navHistory,
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.menu_book_outlined),
+              selectedIcon: const Icon(Icons.menu_book),
+              label: l10n.navDishes,
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.settings_outlined),
+              selectedIcon: const Icon(Icons.settings),
+              label: l10n.navSettings,
+            ),
+          ],
         ),
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.soup_kitchen_outlined),
-            selectedIcon: const Icon(Icons.soup_kitchen),
-            label: l10n.navToday,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.kitchen_outlined),
-            selectedIcon: const Icon(Icons.kitchen),
-            label: l10n.navPantry,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.history_outlined),
-            selectedIcon: const Icon(Icons.history),
-            label: l10n.navHistory,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.menu_book_outlined),
-            selectedIcon: const Icon(Icons.menu_book),
-            label: l10n.navDishes,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.settings_outlined),
-            selectedIcon: const Icon(Icons.settings),
-            label: l10n.navSettings,
-          ),
-        ],
       ),
     );
   }

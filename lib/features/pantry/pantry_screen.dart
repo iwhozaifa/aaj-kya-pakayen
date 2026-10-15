@@ -2,7 +2,7 @@ import 'package:aaj_kya_pakayen/core/l10n/generated/app_localizations.dart';
 import 'package:aaj_kya_pakayen/core/l10n/labels.dart';
 import 'package:aaj_kya_pakayen/core/utils/clock.dart';
 import 'package:aaj_kya_pakayen/core/widgets/big_button.dart';
-import 'package:aaj_kya_pakayen/core/widgets/empty_state.dart';
+import 'package:aaj_kya_pakayen/core/widgets/error_state.dart';
 import 'package:aaj_kya_pakayen/core/widgets/undo_snack_bar.dart';
 import 'package:aaj_kya_pakayen/domain/entities/calendar_date.dart';
 import 'package:aaj_kya_pakayen/domain/enums/protein_type.dart';
@@ -86,11 +86,8 @@ class PantryScreen extends ConsumerWidget {
             ),
           ],
         ),
-        AsyncError() => Center(
-          child: EmptyState(
-            icon: Icons.error_outline,
-            title: l10n.errorGeneric,
-          ),
+        AsyncError() => ErrorState(
+          onRetry: () => ref.invalidate(pantrySummaryProvider),
         ),
         _ => const Center(child: CircularProgressIndicator()),
       },

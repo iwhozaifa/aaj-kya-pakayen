@@ -103,6 +103,11 @@ class _AddPurchaseSheetState extends State<AddPurchaseSheet> {
             onPressed: () => Navigator.of(context)
                 .pop((protein: _protein, grams: _grams, boughtOn: _boughtOn)),
           ),
+          const SizedBox(height: 8),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.cancel),
+          ),
         ],
       ),
     );

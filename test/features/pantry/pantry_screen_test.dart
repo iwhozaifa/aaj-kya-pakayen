@@ -138,6 +138,23 @@ void main() {
     expect(find.text('1.5 kg Beef added'), findsOneWidget);
   });
 
+  testWidgets('the purchase sheet closes with a visible Cancel button', (
+    tester,
+  ) async {
+    await pump(tester);
+
+    await tester.tap(find.text('Add purchase'));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Cancel'));
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('What did you buy?'), findsNothing);
+    verifyNever(
+      () => actions.addPurchase(any(), any(), boughtOn: any(named: 'boughtOn')),
+    );
+  });
+
   testWidgets('meets tap target and label guidelines', (tester) async {
     final handle = tester.ensureSemantics();
     await pump(tester);

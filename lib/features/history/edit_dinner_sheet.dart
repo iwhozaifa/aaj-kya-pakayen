@@ -172,6 +172,11 @@ class _EditDinnerSheetState extends State<EditDinnerSheet> {
               label: Text(l10n.historyDelete),
             ),
           ],
+          const SizedBox(height: 8),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.cancel),
+          ),
         ],
       ),
     );
