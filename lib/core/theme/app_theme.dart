@@ -118,6 +118,11 @@ abstract final class AppTheme {
         fontFamily: urdu
             ? AppFonts.urdu
             : (heading ? AppFonts.heading : AppFonts.body),
+        // Notes and names can mix scripts; Nastaliq has no Latin glyphs and
+        // the Latin fonts have no Urdu ones.
+        fontFamilyFallback: urdu
+            ? const [AppFonts.body]
+            : const [AppFonts.urdu],
         fontSize: size,
         fontWeight: weight,
         height: urdu ? 1.9 : 1.3,
