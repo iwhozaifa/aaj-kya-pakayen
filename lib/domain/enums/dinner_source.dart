@@ -1,0 +1,1 @@
+enum DinnerSource { home, outside }
