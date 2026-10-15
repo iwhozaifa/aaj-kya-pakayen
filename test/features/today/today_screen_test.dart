@@ -3,6 +3,7 @@ import 'package:aaj_kya_pakayen/domain/engine/reason.dart';
 import 'package:aaj_kya_pakayen/domain/engine/rules/day_type_rule.dart';
 import 'package:aaj_kya_pakayen/domain/engine/suggestion_engine.dart';
 import 'package:aaj_kya_pakayen/domain/entities/dinner_log_entry.dart';
+import 'package:aaj_kya_pakayen/domain/entities/dish.dart';
 import 'package:aaj_kya_pakayen/domain/enums/cooking_style.dart';
 import 'package:aaj_kya_pakayen/domain/enums/day_type.dart';
 import 'package:aaj_kya_pakayen/domain/enums/dinner_source.dart';
@@ -19,7 +20,9 @@ import '../../helpers/pump_app.dart';
 
 class _MockActions extends Mock implements TodayActions;
 
-final _byName = {for (final d in pakistaniDishes) d.nameEn: d};
+final Map<String, Dish> _byName = {
+  for (final d in pakistaniDishes) d.nameEn: d,
+};
 
 final _vegDay = TodayState(
   result: SuggestionResult(
@@ -61,10 +64,10 @@ final _meatDay = TodayState(
   ),
 );
 
-final _noStock = TodayState(
+const _noStock = TodayState(
   result: SuggestionResult(
-    day: const DayTypeResolution(naturalDayType: DayType.nonVegDay),
-    suggestions: const [
+    day: DayTypeResolution(naturalDayType: DayType.nonVegDay),
+    suggestions: [
       OutsideSuggestion(
         restock: {ProteinType.chicken, ProteinType.beef},
         reasons: [

@@ -28,13 +28,13 @@
   "@navSettings": {
     "description": "Bottom navigation: settings."
   },
-  "vegDay": "Veg day",
+  "vegDay": "Sabzi day",
   "@vegDay": {
-    "description": "Day type label: vegetables / pulses tonight."
+    "description": "Day type: vegetables or pulses tonight."
   },
-  "nonVegDay": "Meat day",
+  "nonVegDay": "Gosht day",
   "@nonVegDay": {
-    "description": "Day type label: meat tonight."
+    "description": "Day type: meat or ordering outside tonight."
   },
   "undo": "Undo",
   "@undo": {
@@ -189,5 +189,208 @@
   "errorGeneric": "Something went wrong. Please try again.",
   "@errorGeneric": {
     "description": "Shown when loading data fails."
+  },
+  "todaySwapped": "Swapped for tonight",
+  "@todaySwapped": {
+    "description": "Shown when tonight's type was swapped."
+  },
+  "todayCookThis": "Cooking this",
+  "@todayCookThis": {
+    "description": "Main button: log the suggestion as tonight's dinner."
+  },
+  "todayAnother": "Show another",
+  "@todayAnother": {
+    "description": "Button: next suggestion."
+  },
+  "todayOutside": "Ordering outside",
+  "@todayOutside": {
+    "description": "Button: log an outside dinner."
+  },
+  "todaySwap": "Swap day type",
+  "@todaySwap": {
+    "description": "Button: swap veg/meat for tonight."
+  },
+  "todayOtherIdeas": "Other ideas",
+  "@todayOtherIdeas": {
+    "description": "Heading over the other suggestions."
+  },
+  "todayCook": "Cook",
+  "@todayCook": {
+    "description": "Small button to cook another idea."
+  },
+  "todayWithSide": "with {side}",
+  "@todayWithSide": {
+    "description": "Side dish line.",
+    "placeholders": {
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "todayLoggedTitle": "Tonight's dinner",
+  "@todayLoggedTitle": {
+    "description": "Heading once tonight is logged."
+  },
+  "todayChange": "Change",
+  "@todayChange": {
+    "description": "Button: undo tonight's log to choose again."
+  },
+  "todayLogged": "{dish} logged for tonight",
+  "@todayLogged": {
+    "description": "Snackbar after logging a home dinner.",
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "todayOutsideLogged": "Outside dinner logged",
+  "@todayOutsideLogged": {
+    "description": "Snackbar after logging an outside dinner."
+  },
+  "todayNoIdeas": "Nothing fits tonight",
+  "@todayNoIdeas": {
+    "description": "Empty state title."
+  },
+  "todayNoIdeasHint": "Try swapping the day type or turning dishes back on.",
+  "@todayNoIdeasHint": {
+    "description": "Empty state hint."
+  },
+  "outsideTitle": "Order from outside tonight",
+  "@outsideTitle": {
+    "description": "Outside suggestion title."
+  },
+  "outsideLogged": "Ordered from outside",
+  "@outsideLogged": {
+    "description": "Logged outside dinner."
+  },
+  "outsideNoteLabel": "Note (optional)",
+  "@outsideNoteLabel": {
+    "description": "Outside dinner note field label."
+  },
+  "outsideNoteHint": "e.g. biryani from the corner shop",
+  "@outsideNoteHint": {
+    "description": "Outside dinner note hint."
+  },
+  "reasonProteinInStock": "{protein} in stock for {days} days",
+  "@reasonProteinInStock": {
+    "description": "Reason: use the oldest stock first.",
+    "placeholders": {
+      "protein": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonDifferentProtein": "Not {protein} again",
+  "@reasonDifferentProtein": {
+    "description": "Reason: last meat day used another protein.",
+    "placeholders": {
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonFreshStyle": "No {style} this week",
+  "@reasonFreshStyle": {
+    "description": "Reason: cooking style not used this week.",
+    "placeholders": {
+      "style": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonFitsTime": "Ready in {minutes} min",
+  "@reasonFitsTime": {
+    "description": "Reason: fits the time budget.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonServedRice": "Goes with rice",
+  "@reasonServedRice": {
+    "description": "Reason: pulse dish eaten with rice."
+  },
+  "reasonServedRoti": "Goes with roti",
+  "@reasonServedRoti": {
+    "description": "Reason: pulse dish eaten with roti."
+  },
+  "reasonServedEither": "With rice or roti",
+  "@reasonServedEither": {
+    "description": "Reason: pulse dish eaten with either."
+  },
+  "reasonNotCookedFor": "Not cooked for {days} days",
+  "@reasonNotCookedFor": {
+    "description": "Reason: not cooked for a long time.",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonRestock": "Buy {proteins} to cook at home",
+  "@reasonRestock": {
+    "description": "Restock hint when no meat dish is possible.",
+    "placeholders": {
+      "proteins": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonRestockAny": "Buy some meat to cook at home",
+  "@reasonRestockAny": {
+    "description": "Restock hint without specific proteins."
+  },
+  "listOr": "{rest} or {last}",
+  "@listOr": {
+    "description": "Joins the last item of a list.",
+    "placeholders": {
+      "rest": {
+        "type": "String"
+      },
+      "last": {
+        "type": "String"
+      }
+    }
+  },
+  "listSeparator": ", ",
+  "@listSeparator": {
+    "description": "Separator between list items."
+  },
+  "styleKarahi": "karahi",
+  "@styleKarahi": {
+    "description": "Cooking style."
+  },
+  "styleCurry": "curry",
+  "@styleCurry": {
+    "description": "Cooking style."
+  },
+  "styleBbq": "BBQ",
+  "@styleBbq": {
+    "description": "Cooking style."
+  },
+  "styleRoast": "roast",
+  "@styleRoast": {
+    "description": "Cooking style."
+  },
+  "styleFry": "fried dish",
+  "@styleFry": {
+    "description": "Cooking style."
+  },
+  "styleStew": "stew",
+  "@styleStew": {
+    "description": "Cooking style."
+  },
+  "styleRiceDish": "rice dish",
+  "@styleRiceDish": {
+    "description": "Cooking style."
+  },
+  "styleOther": "other dish",
+  "@styleOther": {
+    "description": "Cooking style."
   }
 }
