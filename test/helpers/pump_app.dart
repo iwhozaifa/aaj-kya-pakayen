@@ -6,6 +6,18 @@ import 'package:flutter_test/flutter_test.dart';
 const urdu = Locale('ur');
 const english = Locale('en');
 
+extension WrapInApp on Widget {
+  /// Wraps a full screen in a themed, localized [MaterialApp].
+  Widget wrapInApp({Locale locale = urdu}) => MaterialApp(
+    debugShowCheckedModeBanner: false,
+    locale: locale,
+    supportedLocales: AppLocalizations.supportedLocales,
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    theme: AppTheme.light(urdu: locale.languageCode == 'ur'),
+    home: this,
+  );
+}
+
 extension PumpApp on WidgetTester {
   /// Pumps [widget] inside a themed, localized [MaterialApp].
   Future<void> pumpApp(Widget widget, {Locale locale = urdu}) {
