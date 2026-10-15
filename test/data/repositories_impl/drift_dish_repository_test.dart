@@ -96,6 +96,15 @@ void main() {
     ]);
   });
 
+  test('deletes custom dishes but never built-in ones', () async {
+    final mine = bhindi.copyWith(id: 10000, nameEn: 'Mine', isCustom: true);
+    await repo.upsertAll([mine]);
+    await repo.deleteCustom(10000);
+    await repo.deleteCustom(2);
+    expect(await repo.getById(10000), isNull);
+    expect(await repo.getById(2), bhindi);
+  });
+
   test('watchAll emits changes', () async {
     final stream = repo.watchAll();
     expect(await stream.first, [bhindi, karahi]);
