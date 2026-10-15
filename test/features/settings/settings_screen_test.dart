@@ -49,8 +49,18 @@ void main() {
     await tester.pumpAndSettle();
   }
 
+  /// Scrolls the lazy settings list until [finder] is built and on screen.
+  Future<void> reveal(WidgetTester tester, Finder finder) async {
+    await tester.scrollUntilVisible(
+      finder,
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pumpAndSettle();
+  }
+
   Future<void> tapVisible(WidgetTester tester, Finder finder) async {
-    await tester.ensureVisible(finder);
+    await reveal(tester, finder);
     await tester.pumpAndSettle();
     await tester.tap(finder);
     await tester.pumpAndSettle();
@@ -59,7 +69,7 @@ void main() {
   testWidgets('switches the language', (tester) async {
     await pump(tester);
 
-    await tapVisible(tester, find.widgetWithText(ChoiceChip, 'اردو'));
+    await tapVisible(tester, find.text('اردو'));
     verify(() => actions.setLanguage('ur')).called(1);
   });
 
@@ -92,7 +102,7 @@ void main() {
   testWidgets('chooses a time budget', (tester) async {
     await pump(tester);
 
-    await tapVisible(tester, find.widgetWithText(ChoiceChip, 'Up to 30 min'));
+    await tapVisible(tester, find.text('Up to 30 min'));
     verify(() => actions.setTimeBudget(TimeBudget.quick)).called(1);
   });
 
@@ -101,11 +111,7 @@ void main() {
   ) async {
     await pump(tester);
 
-    await tester.scrollUntilVisible(
-      find.text('Chinese'),
-      200,
-      scrollable: find.byType(Scrollable).first,
-    );
+    await reveal(tester, find.text('Chinese'));
     expect(find.text('Pakistani'), findsOneWidget);
     expect(find.text('Indian'), findsOneWidget);
     expect(find.text('Coming soon'), findsNWidgets(3));
@@ -114,6 +120,7 @@ void main() {
   testWidgets('turns the daily reminder on', (tester) async {
     await pump(tester);
 
+    await reveal(tester, find.text('4:30 PM'));
     expect(find.text('4:30 PM'), findsOneWidget);
     await tapVisible(tester, find.text('Daily reminder'));
     verify(() => actions.setReminderEnabled(enabled: true)).called(1);

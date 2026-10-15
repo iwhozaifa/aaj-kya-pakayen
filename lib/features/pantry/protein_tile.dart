@@ -27,56 +27,70 @@ class ProteinTile extends StatelessWidget {
     final oldestDays = stock.oldestDays;
     const buttonSize = Size.square(56);
 
+    final info = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: 8,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Text(name, style: textTheme.titleLarge),
+            if (stock.isLow) _LowBadge(label: l10n.pantryLow),
+          ],
+        ),
+        Text(
+          stock.grams == 0 ? l10n.pantryNone : l10n.grams(stock.grams),
+          style: stock.grams == 0
+              ? textTheme.titleMedium
+              : textTheme.headlineMedium,
+        ),
+        if (oldestDays != null)
+          Text(l10n.pantryOldest(oldestDays), style: textTheme.bodyMedium),
+      ],
+    );
+    final buttons = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton.filledTonal(
+          tooltip: l10n.pantryDecrease(step, name),
+          style: IconButton.styleFrom(minimumSize: buttonSize),
+          onPressed: stock.grams == 0 ? null : onDecrease,
+          icon: const Icon(Icons.remove, size: 28),
+        ),
+        const SizedBox(width: 8),
+        IconButton.filled(
+          tooltip: l10n.pantryIncrease(step, name),
+          style: IconButton.styleFrom(minimumSize: buttonSize),
+          onPressed: onIncrease,
+          icon: const Icon(Icons.add, size: 28),
+        ),
+      ],
+    );
+    // With large text the buttons move below, so names keep their width.
+    final largeText = MediaQuery.textScalerOf(context).scale(10) > 13;
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        child: largeText
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Row(
-                    children: [
-                      Flexible(child: Text(name, style: textTheme.titleLarge)),
-                      if (stock.isLow) ...[
-                        const SizedBox(width: 8),
-                        _LowBadge(label: l10n.pantryLow),
-                      ],
-                    ],
+                  info,
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: buttons,
                   ),
-                  Text(
-                    stock.grams == 0
-                        ? l10n.pantryNone
-                        : l10n.grams(stock.grams),
-                    style: stock.grams == 0
-                        ? textTheme.titleMedium
-                        : textTheme.headlineMedium,
-                  ),
-                  if (oldestDays != null)
-                    Text(
-                      l10n.pantryOldest(oldestDays),
-                      style: textTheme.bodyMedium,
-                    ),
+                ],
+              )
+            : Row(
+                children: [
+                  Expanded(child: info),
+                  buttons,
                 ],
               ),
-            ),
-            IconButton.filledTonal(
-              tooltip: l10n.pantryDecrease(step, name),
-              style: IconButton.styleFrom(minimumSize: buttonSize),
-              onPressed: stock.grams == 0 ? null : onDecrease,
-              icon: const Icon(Icons.remove, size: 28),
-            ),
-            const SizedBox(width: 8),
-            IconButton.filled(
-              tooltip: l10n.pantryIncrease(step, name),
-              style: IconButton.styleFrom(minimumSize: buttonSize),
-              onPressed: onIncrease,
-              icon: const Icon(Icons.add, size: 28),
-            ),
-          ],
-        ),
       ),
     );
   }

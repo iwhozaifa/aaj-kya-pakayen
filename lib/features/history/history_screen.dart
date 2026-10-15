@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:aaj_kya_pakayen/core/l10n/generated/app_localizations.dart';
 import 'package:aaj_kya_pakayen/core/l10n/labels.dart';
 import 'package:aaj_kya_pakayen/core/theme/app_colors.dart';
@@ -57,7 +59,6 @@ class HistoryScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.historyTitle)),
       body: switch (state) {
-        // 12dp sides leave 7 week chips at >= 48dp each on a 360dp phone.
         AsyncData(:final value) => ListView(
           padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
           children: [
@@ -66,17 +67,19 @@ class HistoryScreen extends ConsumerWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
-            Row(
+            _WeekStrip(
+              weekdays: [
+                for (final day in value.week)
+                  DateFormat.E(l10n.localeName).format(day.date),
+              ],
               children: [
                 for (final day in value.week)
-                  Expanded(
-                    child: _DayChip(
-                      day: day,
-                      tooltip: day.entry == null
-                          ? l10n.historyAddFor(label(day.date))
-                          : label(day.date),
-                      onTap: () => edit(day.date, day.entry),
-                    ),
+                  _DayChip(
+                    day: day,
+                    tooltip: day.entry == null
+                        ? l10n.historyAddFor(label(day.date))
+                        : label(day.date),
+                    onTap: () => edit(day.date, day.entry),
                   ),
               ],
             ),
@@ -122,6 +125,52 @@ IconData _iconFor(DinnerLogEntry e) => e.isOutside
 Color _colorFor(DinnerLogEntry e) =>
     e.dayType == DayType.vegDay ? AppColors.cardamom : AppColors.chilli;
 
+/// The 7 day chips in one row when the weekday names fit, otherwise in
+/// balanced rows (4 + 3). Urdu names are long and large text must never
+/// fade or split them (docs/DECISIONS.md D-034).
+class _WeekStrip extends StatelessWidget {
+  const new({required this.children, required this.weekdays});
+
+  final List<Widget> children;
+  final List<String> weekdays;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = Theme.of(context).textTheme.labelSmall;
+    final scaler = MediaQuery.textScalerOf(context);
+    final direction = Directionality.of(context);
+    var widest = 0.0;
+    for (final name in weekdays) {
+      final painter = TextPainter(
+        text: TextSpan(text: name, style: style),
+        textDirection: direction,
+        textScaler: scaler,
+        maxLines: 1,
+      )..layout();
+      widest = max(widest, painter.width);
+      painter.dispose();
+    }
+    // A little breathing room; never under the 48 dp touch target.
+    final needed = max(48, widest + 4);
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final fit = (constraints.maxWidth ~/ needed).clamp(1, children.length);
+        final rows = (children.length / fit).ceil();
+        final perRow = (children.length / rows).ceil();
+        final width = constraints.maxWidth / perRow;
+        return Wrap(
+          alignment: WrapAlignment.center,
+          runSpacing: 8,
+          children: [
+            for (final chip in children) SizedBox(width: width, child: chip),
+          ],
+        );
+      },
+    );
+  }
+}
+
 class _DayChip extends StatelessWidget {
   const new({required this.day, required this.tooltip, required this.onTap});
 
@@ -142,12 +191,12 @@ class _DayChip extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 DateFormat.E(l10n.localeName).format(day.date),
                 style: textTheme.labelSmall,
                 maxLines: 1,
-                overflow: TextOverflow.fade,
                 softWrap: false,
               ),
               CircleAvatar(
