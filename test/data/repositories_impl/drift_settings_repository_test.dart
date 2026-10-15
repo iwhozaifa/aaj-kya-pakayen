@@ -62,6 +62,24 @@ void main() {
     expect((await repo.load()).dayTypeOverride, isNull);
   });
 
+  test(
+    'saving leaves keys it does not own (e.g. seed_version) alone',
+    () async {
+      await db.customStatement(
+        "INSERT INTO app_settings (key, value) VALUES ('seed_version', '1')",
+      );
+      await repo.save(custom);
+      await repo.save(const AppSettings());
+
+      final row = await db
+          .customSelect(
+            "SELECT value FROM app_settings WHERE key = 'seed_version'",
+          )
+          .getSingle();
+      expect(row.read<String>('value'), '1');
+    },
+  );
+
   test('ignores unreadable values and falls back to defaults', () async {
     await db.customStatement(
       "INSERT INTO app_settings (key, value) VALUES ('household_size', 'abc'),"

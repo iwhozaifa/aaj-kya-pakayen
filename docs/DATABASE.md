@@ -7,7 +7,7 @@ Local SQLite via [Drift](https://drift.simonbinder.eu/). Schema version **1**.
 - DAOs: `lib/data/db/daos/`
 - Repositories (domain-typed): `lib/data/repositories_impl/`, exposed by `lib/data/providers.dart`
 
-Seed data arrives in `feature/seed-dishes` (#4).
+Seed data: `lib/data/seed/` (see [Seed data](#seed-data)).
 
 ## ER diagram
 
@@ -130,3 +130,37 @@ erDiagram
 4. `test/data/db/migrations/migration_test.dart` checks:
    - that the code schema matches the latest dump
    - every upgrade path between dumped versions
+
+## Seed data
+
+`lib/data/seed/pakistani_dishes.dart` holds 78 dishes and 19 curated pairings.
+
+| Type | Ids | Count | Examples |
+| --- | --- | --- | --- |
+| Vegetable | 1–29 | 23 | Aloo Gobi, Bhindi Masala, Baingan Bharta, Sarson ka Saag |
+| Pulse | 30–49 | 16 | Daal Chawal, Daal Mash Tarka, Rajma Chawal, Kadhi Chawal |
+| Chicken | 50–69 | 14 | Chicken Karahi, White Karahi, Qorma, Biryani, Aloo Chicken Salan |
+| Beef | 70–79 | 9 | Nihari, Haleem, Paye, Aloo Gosht, Daal Gosht |
+| Mutton | 80–89 | 6 | Mutton Karahi, Shinwari Karahi, Namkeen Gosht |
+| Mince | 90–99 | 10 | Aloo Qeema, Shami Kebab, Seekh Kebab, Chapli Kebab |
+
+- **Ids are permanent,** because history rows point at them. Custom dishes start at `10000`.
+- **Variant groups** count as one dish for the no-repeat rule:
+
+  | Group | Dishes |
+  | --- | --- |
+  | `chicken_karahi` | karahi, white karahi |
+  | `mash_daal` | mash ki daal, daal mash tarka |
+  | `lobia` | lobia chawal, lobia masala |
+  | `mutton_karahi` | mutton karahi, shinwari karahi |
+
+- **Pairings** always join a meat main with a vegetable dish that can be a side.
+- **Protein grams per person** are raw meat per adult serving. They are lower for dishes bulked out with potatoes, peas or daal.
+
+### Seeding
+
+`DishSeeder` runs at startup through `appStartupProvider`, behind the native splash:
+
+- It writes the catalogue when the stored `app_settings.seed_version` is below `seedVersion`. Otherwise it does nothing.
+- Re-seeding after a bump refreshes built-in dishes but keeps `is_active` as the family set it, and never touches custom dishes.
+- To change the catalogue, edit the list, bump `seedVersion`, and keep `test/data/seed/` green.

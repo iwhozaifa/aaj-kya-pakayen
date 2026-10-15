@@ -19,11 +19,25 @@ class SettingsDao extends DatabaseAccessor<AppDatabase>
   Stream<Map<String, String>> watchAll() =>
       select(appSettingsEntries).watch().map(_toMap);
 
-  /// Replaces every stored setting with [values].
-  Future<void> replaceAll(Map<String, String> values) => transaction(() async {
-    await delete(appSettingsEntries).go();
+  Future<String?> value(String key) => (select(
+    appSettingsEntries,
+  )..where((s) => s.key.equals(key))).map((row) => row.value).getSingleOrNull();
+
+  Future<void> setValue(String key, String value) => into(appSettingsEntries)
+      .insertOnConflictUpdate(
+        AppSettingsEntriesCompanion.insert(key: key, value: value),
+      );
+
+  /// Writes [values] and removes any of [ownedKeys] not in [values].
+  /// Keys outside [ownedKeys] are left untouched.
+  Future<void> replaceOwned(
+    Set<String> ownedKeys,
+    Map<String, String> values,
+  ) => transaction(() async {
+    final stale = ownedKeys.difference(values.keys.toSet());
+    await (delete(appSettingsEntries)..where((s) => s.key.isIn(stale))).go();
     await batch(
-      (b) => b.insertAll(appSettingsEntries, [
+      (b) => b.insertAllOnConflictUpdate(appSettingsEntries, [
         for (final MapEntry(:key, :value) in values.entries)
           AppSettingsEntriesCompanion.insert(key: key, value: value),
       ]),
