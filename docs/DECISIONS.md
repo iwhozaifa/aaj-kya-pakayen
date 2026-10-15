@@ -179,3 +179,17 @@ The Urdu theme falls back to Nunito, and the English theme falls back to Noto Na
 
 ## D-033 — App wiring lives in core
 `core/router`, `core/startup` and `core/l10n/locale_provider.dart` compose the app: they route to every feature screen, seed and preload data, and read the saved language. They import `data/providers.dart` and feature screens, which the plain `core/` rule forbids. These files are the documented exception rather than a separate `app/` layer, which would add a folder for three files. Reusable `core/` code (theme, widgets, labels, utils) still imports neither `data/` nor `features/`.
+
+## D-034 — Large text
+Tested at 2× system text on a 360 dp phone (`test/accessibility/large_text_test.dart`). Overflow errors aren't the only way large text fails, so the test also fails on text faded out by `TextOverflow.fade` and on a single word split across lines.
+- **Nav labels are capped at 1×.** They are already 18sp (1.5× Material's 12sp), and each has an icon. With five tabs on 360 dp, larger labels split mid-word ("Histor / y"). Screen content is not capped.
+- **Protein tiles** stack the ± buttons below the name when text is over 1.3×, so "Chicken" keeps its full width.
+- **History week strip** measures the longest weekday name. The 7 chips go in one row if the names fit; otherwise they go in balanced rows (4 + 3), never 6 + 1. This replaces the fixed 7-column row of D-027, which faded Urdu names like جمعرات even at 1×.
+- **Settings choices** (language, time budget) are full-width option rows, not chips, because chip labels can't wrap.
+- **Every sheet has a Cancel button**, so closing one doesn't depend on a drag or a tap outside.
+- **Error states** show "Try again", which reloads the screen's provider. Riverpod also retries on its own in the background.
+
+## D-035 — Performance pass
+- **The engine takes about 2.5 ms per suggestion** with 1,000 dishes and a year of history, against 78 real dishes. `test/engine/engine_performance_test.dart` fails above 50 ms per suggestion to catch accidental quadratic work.
+- **Queries that filter use indexes** (dish type, pantry protein, movements by dinner). Screens read through providers that refresh on drift change feeds rather than polling.
+- **No further optimisation was needed.** Lists are 78 dishes and 60 days of history, well within what Flutter builds per frame. Adding complexity such as caching or isolates would not pay for itself.
