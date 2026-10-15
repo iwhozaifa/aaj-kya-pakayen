@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Fails if line coverage of lib/domain/ in coverage/lcov.info is below the threshold.
+# Generated files (*.g.dart, *.freezed.dart) are excluded.
 # Usage: scripts/check_domain_coverage.sh [threshold_percent] [lcov_file]
 set -euo pipefail
 
@@ -12,7 +13,7 @@ if [[ ! -f "$lcov_file" ]]; then
 fi
 
 read -r found hit < <(awk '
-  /^SF:/ { in_domain = ($0 ~ /^SF:(.*\/)?lib\/domain\//) }
+  /^SF:/ { in_domain = ($0 ~ /^SF:(.*\/)?lib\/domain\//) && ($0 !~ /\.(g|freezed)\.dart$/) }
   in_domain && /^LF:/ { split($0, a, ":"); found += a[2] }
   in_domain && /^LH:/ { split($0, a, ":"); hit += a[2] }
   END { print found + 0, hit + 0 }
