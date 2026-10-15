@@ -92,3 +92,10 @@ DATABASE.md.
 ## D-016 — json_serializable uses `explicit_to_json`
 Set in `build.yaml`, so nested freezed objects (e.g. `AppSettings.dayTypeOverride`) serialize properly.
 The domain coverage gate ignores `*.g.dart` and `*.freezed.dart`.
+
+## D-017 — Seed catalogue choices
+- **Dish count:** 78, beyond the brief's minimum of 70. Added everyday dishes the brief didn't list: aloo gosht, daal gosht, aloo chicken salan, chapli kebab, daal qeema, sarson ka saag and others.
+- **Paye** is filed under beef. **Haleem** is beef at 100 g per person because it is mostly grain and daal.
+- **Pulao and biryani** have `staple_pairing = none`, because they are the staple themselves.
+- **Rice pulses:** seven pulse dishes are paired with rice (daal chawal, masoor daal, khichdi, rajma, lobia, chana pulao, kadhi).
+- **`app_settings.seed_version`** is owned by the seeder. `SettingsRepository.save` only replaces the keys it owns.
