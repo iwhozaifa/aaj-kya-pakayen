@@ -1,4 +1,5 @@
 import 'package:aaj_kya_pakayen/core/widgets/app_shell.dart';
+import 'package:aaj_kya_pakayen/features/history/history_screen.dart';
 import 'package:aaj_kya_pakayen/features/pantry/pantry_screen.dart';
 import 'package:aaj_kya_pakayen/features/today/today_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,7 @@ part 'app_router.g.dart';
 abstract final class AppRoutes {
   static const today = '/';
   static const pantry = '/pantry';
+  static const history = '/history';
 }
 
 @riverpod
@@ -31,6 +33,14 @@ GoRouter appRouter(Ref ref) {
               GoRoute(
                 path: AppRoutes.pantry,
                 builder: (context, state) => const PantryScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.history,
+                builder: (context, state) => const HistoryScreen(),
               ),
             ],
           ),

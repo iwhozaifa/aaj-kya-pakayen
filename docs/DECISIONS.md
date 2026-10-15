@@ -140,3 +140,13 @@ The brief shows "Sabzi Day 🥬 / Gosht Day 🍗". The badge uses Material icons
 
 ## D-026 — Secondary buttons use dark text
 Turmeric text on cream fails WCAG contrast. Outlined and text buttons use Chai Brown text with a Turmeric border. Turmeric stays as the fill of primary buttons, which have dark text. The Today screen test checks Flutter's `textContrastGuideline`.
+
+## D-027 — Editing history
+- **Editing a past day** re-logs it through `LogDinner`. Stock from the old entry is given back, and the new dish's protein is deducted, so the pantry always matches the log. The change is applied now; the pantry isn't rebuilt for the past.
+- **Day type of an edited day** comes from the chosen dish: veg or pulse means veg day, meat means non-veg day, and outside means non-veg day. Undo restores the original entry exactly, including a swapped day type.
+- **Entries added from History** are marked `was_suggested = false`.
+- **History shows 60 days.** Inactive dishes still show their names, but the edit picker only offers active dishes.
+- **The week strip** is Material `Tooltip`/`InkWell` chips at least 48 dp wide on a 360 dp phone.
+
+## D-028 — Font fallback between scripts
+The Urdu theme falls back to Nunito, and the English theme falls back to Noto Nastaliq Urdu. User text such as outside notes can be in either script; without the fallback, Latin text in Urdu mode rendered as missing-glyph boxes.
