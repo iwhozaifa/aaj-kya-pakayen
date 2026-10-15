@@ -127,3 +127,16 @@ Tiles use the everyday kitchen words چکن، بیف، مٹن، قیمہ instead
 
 ## D-023 — Navigation grows tab by tab
 The bottom `NavigationBar` (go_router `StatefulShellRoute`) starts with Today and Stock. History, Dishes and Settings join as their branches land, so there are never tabs that lead to empty screens.
+
+## D-024 — Logging a dinner
+- **"Cooking this"** saves the entry, then deducts `grams/person × household` of the main's protein, FIFO, linked to the entry. If stock dropped since the suggestion was made, it deducts only what is left, so logging never fails.
+- **Re-logging the same date**, from Today's Change button or the history editor, first gives back the earlier entry's stock.
+- **Undo, and Today's "Change"** delete the entry and revert its movements.
+- **An outside dinner** is always logged as a non-veg day. A blank note is stored as none.
+- **The swap button toggles.** Swapping an already swapped evening removes the override.
+
+## D-025 — Day badge uses icons, not emoji
+The brief shows "Sabzi Day 🥬 / Gosht Day 🍗". The badge uses Material icons (`eco`, `set_meal`) instead. The bundled fonts have no emoji glyphs, and system emoji render differently on each device and as blank boxes in goldens. In English the label reads "Sabzi day" / "Gosht day", as in the brief.
+
+## D-026 — Secondary buttons use dark text
+Turmeric text on cream fails WCAG contrast. Outlined and text buttons use Chai Brown text with a Turmeric border. Turmeric stays as the fill of primary buttons, which have dark text. The Today screen test checks Flutter's `textContrastGuideline`.
