@@ -17,10 +17,7 @@ void main() {
   late ProviderContainer container;
 
   final bhindi = dish(2, side: true).copyWith(nameEn: 'Bhindi');
-  final karahi = dish(
-    50,
-    type: DishType.chicken,
-  ).copyWith(nameEn: 'Karahi');
+  final karahi = dish(50, type: DishType.chicken).copyWith(nameEn: 'Karahi');
   final retired = dish(3, active: false).copyWith(nameEn: 'Arvi');
 
   const draft = CustomDishDraft(
