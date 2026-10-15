@@ -218,6 +218,22 @@ void main() {
     verify(() => actions.restore(_daalNight)).called(1);
   });
 
+  testWidgets('the edit sheet closes with a visible Cancel button', (
+    tester,
+  ) async {
+    await pump(tester, full);
+
+    await tester.tap(find.text('Chicken Karahi'));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Cancel'));
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Dinner on ${_label(_day(14))}'), findsNothing);
+    verifyNever(() => actions.delete(any()));
+    verifyNoMoreInteractions(actions);
+  });
+
   testWidgets('shows a friendly empty state', (tester) async {
     await pump(tester, _state(const []));
     expect(find.text('No dinners logged yet'), findsOneWidget);
