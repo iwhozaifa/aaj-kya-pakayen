@@ -1,6 +1,7 @@
 import 'package:aaj_kya_pakayen/app.dart';
 import 'package:aaj_kya_pakayen/data/db/app_database.dart';
 import 'package:aaj_kya_pakayen/data/providers.dart';
+import 'package:aaj_kya_pakayen/features/history/history_screen.dart';
 import 'package:aaj_kya_pakayen/features/pantry/pantry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +15,7 @@ void main() {
   setUp(() => db = newTestDatabase());
   tearDown(() => db.close());
 
-  testWidgets('bottom navigation switches between Today and Stock', (
+  testWidgets('bottom navigation switches between Today, Stock and History', (
     tester,
   ) async {
     await tester.pumpWidget(
@@ -33,6 +34,12 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(PantryScreen), findsOneWidget);
     expect(find.text('گوشت کا اسٹاک'), findsOneWidget);
+
+    await tester.tap(
+      find.descendant(of: bar, matching: find.text('پچھلے کھانے')),
+    );
+    await tester.pumpAndSettle();
+    expect(find.byType(HistoryScreen), findsOneWidget);
 
     await tester.tap(find.descendant(of: bar, matching: find.text('آج')));
     await tester.pumpAndSettle();
