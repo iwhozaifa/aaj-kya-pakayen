@@ -45,5 +45,7 @@ scripts/check_domain_coverage.sh 80
 - [Database](docs/DATABASE.md)
 - [Branding](docs/BRANDING.md)
 - [Accessibility](docs/ACCESSIBILITY.md)
+- [Releasing](docs/RELEASING.md)
 - [Git workflow](docs/GIT_WORKFLOW.md)
+- [Changelog](CHANGELOG.md)
 - [Decisions](docs/DECISIONS.md)
